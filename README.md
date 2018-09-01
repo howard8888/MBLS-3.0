@@ -44,7 +44,7 @@ At the time of this writing, despite the human-like performance of artificial ne
     ....
     ....
     
- **Key concepts to demonstrate in MBLS-3 **
+ **Key concepts to demonstrate in MBLS-3**:
  
  -
     

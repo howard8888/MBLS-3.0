@@ -50,7 +50,19 @@ At the time of this writing, despite the human-like performance of artificial ne
  - To show that psychosis (retrieval of incorrect vectors not associated with the reality at hand and cognitive dysfunction) is inevitable if Working Memory without error-correcting circuitry or software is used and becomes stressed.
  - To show that an intervention that reduces the likelihood of psychosis in the MBLS will by analogous intervention reduce the likelihood of a young person of developing chronic schizophrenia.
  - 50,000 proposed HLNs for MBLS-3 are not sufficient to implement the presentation example (eg, see slides which can be downloaded from this GitHub page) of the MBLS Search-and-Rescue Robot, but are enough to show a simplified Search-and-Rescue Robot simulation.
- - 
+ - Better implementation of causal memory.
+ - Better use of causal memory in the Working Memory to allow one-example learning
+ - Better use of causal memory in the Working Memory to allow one-example extrapolation
+ - Show separation of Procedural Memory and Declarative Memory as most Cognitive Architectures do, is not neccessary
+ - To show meaningfulness feature extracts more data out of an input sensory vector than not using the feature
+ - To see if backpropagation of MBLS-2 between the HLNs can be replaced by one-shot reinforcement learning in MBLS-3
+ - To better define minimal intuitive physics required
+ - To better define minimal intuitive psychology required
+ - To better define minimal intuitive planning required
+ - To better define minimal intuitive meta-learning required
+ - To better interweave subsymbolic and symbolic processes in the MBLS
+ - To better allow meaningfulness to be used adjunctly in the symbolic processes, rather than just as input sensory vector processing
+ - To better implement reinforcement learning 
     
    
   

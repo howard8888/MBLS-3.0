@@ -3,15 +3,16 @@ Version 3.0  Meaningful Based Learning System (MBLS)
 
 The 'Meaningful Based Learning System' (MBLS) is an implementation of the Meaningful Based Cognitive Architecture.
 
-version 1 - Winter 2017 - Initial transfer from whiteboards to Python simulation. No ANN libraries. Handcoded in Python 2.7.
+**version 1** - Winter 2017 - Initial transfer from whiteboards to Python simulation. No ANN libraries. Handcoded in Python 2.7.
 Shannon diversity used to assess meaningfulness values.
 
-version 2 - Spring 2018 - Switched to Python 3.6. Handcoded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules simulated by Python methods rather than simulating the collection of connected simulated HLNs. Causal memory now extensively used.
+**version 2** - Spring 2018 - Switched to Python 3.6. Handcoded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules simulated by Python methods rather than simulating the collection of connected simulated HLNs. Causal memory now extensively used.
 
-version 3 - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team working, eg, open source, on the code. Robert C. Martin's Clean Code software architecture and style being followed. HLNs being ramped up to 50,000 from a few dozen in previous versions.
+**version 3** - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team collaboration with the code. Robert C. Martin's Clean Code software architecture and style being followed. HLNs are being ramped up to 50,000 from a few dozen in previous versions, with the goal of obtaining quantitative experimental data to better validate key concepts behind the Meaningful-Based Cognitive Architecture.
 
+See below for key concepts that I wish to demonstrate in MBLS-3. 
 
-Papers describing the Meaningful-Based Cognitive Archtiecture and the MBLS:
+**Papers** describing the Meaningful-Based Cognitive Archtiecture and the MBLS:
 
 Schneider, H., Non-Hybrid Meaningful-Based Learning System Using a Configurable Network of Neural Networks. Proceedings of the 2018 International Conference on Artificial Intelligence pp 96-102; Aug 2018.
 
@@ -21,8 +22,9 @@ https://www.respekt.cz/spolecnost/muze-pocitac-trpet-psychozou
 
 Schneider, H., Meaningful-Based Cognitive Architecture. Procedia Computer Science, 9th Annual International Conference on Biologically Inspired Cognitive Architectures, BICA 2018,edited by Samsonovich, A.V.,  in press.
 
+**PowerPoint slides** (in PDF format) of my presentation at the BICA section of the HLAI-18 in Prague, Czech Republic can be downloaded from this GitHub page, and give an idea of the key concepts behind the Meaningful-Based Cognitive Architecture and the MBLS implementation. The papers cannot be reproduced for download here but an abstract is given below. (However, they can readily be obtained via a Google search and downloaded from the publishers.)
 
-Excerpts of paper:
+**Excerpts of paper**:
 
 2018 Annual International Conference on Biologically Inspired Cognitive Architectures
 Meaningful-Based Cognitive Architecture
@@ -42,5 +44,7 @@ At the time of this writing, despite the human-like performance of artificial ne
     ....
     ....
     
+ **Key concepts to demonstrate in MBLS-3 **
     
+   
   

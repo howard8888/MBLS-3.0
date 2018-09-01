@@ -60,9 +60,23 @@ At the time of this writing, despite the human-like performance of artificial ne
  - To better define minimal intuitive psychology required
  - To better define minimal intuitive planning required
  - To better define minimal intuitive meta-learning required
+ - To better define minimal human culture required to ensure safe operation
  - To better interweave subsymbolic and symbolic processes in the MBLS
  - To better allow meaningfulness to be used adjunctly in the symbolic processes, rather than just as input sensory vector processing
- - To better implement reinforcement learning 
+ - To better implement reinforcement learning via consciousness/goals/emotional centers
+ - To better implement the autonomic modules and account for incorporation within the a physical system, such as the MBLS Search-and-Rescue robot
+ - More work on the pre-configuration Python algorithms
+ - More work on the Python learned/stored algorithms to better control library functions
+ - More realistic Python quasi-back propagation
+ - Implement the discrete learning features made available in the previous version
+ - Better use of the dual functions of the feedback vector to the HLNs -- meaningfulness and learning of the pattern at hand
+ - Better use of the system-wide meaningulness feedback vector
+ - Fine tuning of the vector convergence circuitry in the HLN simulation so that the Hopfield nets remain usable in a large network
+ - Start transition from the Python high functional simulation of the Working Memory to simulation by individual HLNs
+ - More dynamic algorithms for reconfiguration of the HLNs rather than the very static algorithms used in previous version
+ - Start implementing the functions of the sequential/error-correcting module and interweave with the rest of the MBLS
+ - 
+ - 
     
    
   

@@ -77,6 +77,11 @@ At the time of this writing, despite the human-like performance of artificial ne
  - More dynamic algorithms for reconfiguration of the HLNs rather than the very static algorithms used in previous version
  - Start implementing the functions of the sequential/error-correcting module and interweave with the rest of the MBLS
  - Consider implementing meta-prototyping structures versus intuitive algos
+ - To better define minimal algorithms for world building
+ - To better define minimal algorithms for logic operations on world models from causal memory
+ - Given all the other structures, to better define minimal algorithms for common sense-like ability
+ - To decide which levels of sensory hierarchy to feed directly into Working Memory, and which to not, ie, V2 vs V4 situation
+ - 
  - 
  - 
     

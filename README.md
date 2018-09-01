@@ -80,10 +80,17 @@ At the time of this writing, despite the human-like performance of artificial ne
  - To better define minimal algorithms for world building
  - To better define minimal algorithms for logic operations on world models from causal memory
  - Given all the other structures, to better define minimal algorithms for common sense-like ability
- - To decide which levels of sensory hierarchy to feed directly into Working Memory, and which to not, ie, V2 vs V4 situation
+ - To decide which levels of sensory hierarchy to feed directly into Working Memory, and which to not, ie, V1 vs V4 situation
+ - See if can start implementing some simple language features with 50,000 HLNs
+ - Lifelong learning -- one item per HLN
+ - Lifelong learning -- start holding multiple items per HLN
+ - Intuitive goals
+ - Sequences of thoughts in MBLS (ie, feed output of working memory back in as input to the MBLS)
+ - Self-awareness -- define better causal recording of Working Memory for better problem solving
+ - Self-awareness -- define better causal recording of Working Memory for better transparency
+ - Self-awareness (consciousness center/emotional/reward module) solving class imbalance problem and resulting overfitting to correct
  - 
- - 
- - 
+ -  
     
    
   

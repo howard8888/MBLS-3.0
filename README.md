@@ -89,8 +89,6 @@ At the time of this writing, despite the human-like performance of artificial ne
  - Self-awareness -- define better causal recording of Working Memory for better problem solving
  - Self-awareness -- define better causal recording of Working Memory for better transparency
  - Self-awareness (consciousness center/emotional/reward module) solving class imbalance problem and resulting overfitting to correct
- - 
- -  
     
    
   

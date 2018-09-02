@@ -6,7 +6,7 @@ The 'Meaningful Based Learning System' (**MBLS**) is an implementation of the **
 **version 1** - Winter 2017 - Initial transfer from whiteboards to Python simulation. No ANN libraries. Handcoded in Python 2.7.
 Shannon diversity used to assess meaningfulness values.
 
-**version 2** - Spring 2018 - Switched to Python 3.6. Handcoded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules simulated by Python methods rather than simulating the collection of connected simulated HLNs. Causal memory now extensively used. Full development prematurely terminated for transition to Version 3 to allow collaboration and to more scientifically address concepts that the Meaningful-Based Cognitive Architecture proposes.
+**version 2** - Spring 2018 - Refactored to Python 3.6. Handcoded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules simulated by Python methods rather than simulating the collection of connected simulated HLNs. Causal memory now extensively used. Full development prematurely terminated for transition to Version 3 to allow collaboration and to more scientifically address concepts that the Meaningful-Based Cognitive Architecture proposes.
 
 **version 3** - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team collaboration with the code. Robert C. Martin's Clean Code software architecture and style being followed. HLNs are being ramped up to 50,000 from a few dozen in previous versions, with the goal of obtaining quantitative experimental data to better validate key concepts behind the Meaningful-Based Cognitive Architecture.
 

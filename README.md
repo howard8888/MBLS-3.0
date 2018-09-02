@@ -1,7 +1,7 @@
 # MBLS-3.0
 Version 3.0  Meaningful Based Learning System (MBLS)
 
-The 'Meaningful Based Learning System' (MBLS) is an implementation of the Meaningful Based Cognitive Architecture.
+The 'Meaningful Based Learning System' (**MBLS**) is an implementation of the **Meaningful Based Cognitive Architecture**.
 
 **version 1** - Winter 2017 - Initial transfer from whiteboards to Python simulation. No ANN libraries. Handcoded in Python 2.7.
 Shannon diversity used to assess meaningfulness values.

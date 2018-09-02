@@ -13,6 +13,7 @@ Shannon diversity used to assess meaningfulness values.
 See below for key concepts that I wish to demonstrate in MBLS-3. 
 
 **Papers** describing the Meaningful-Based Cognitive Archtiecture and the MBLS:
+The papers cannot be reproduced for download here but an abstract is given below. (However, they can readily be obtained via a Google search and downloaded from the publishers.)
 
 Schneider, H., Non-Hybrid Meaningful-Based Learning System Using a Configurable Network of Neural Networks. Proceedings of the 2018 International Conference on Artificial Intelligence pp 96-102; Aug 2018.
 
@@ -22,7 +23,7 @@ https://www.respekt.cz/spolecnost/muze-pocitac-trpet-psychozou
 
 Schneider, H., Meaningful-Based Cognitive Architecture. Procedia Computer Science, 9th Annual International Conference on Biologically Inspired Cognitive Architectures, BICA 2018,edited by Samsonovich, A.V.,  in press.
 
-**PowerPoint slides** (in PDF format) of my presentation at the BICA section of the HLAI-18 in Prague, Czech Republic can be downloaded from this GitHub page, and give an idea of the key concepts behind the Meaningful-Based Cognitive Architecture and the MBLS implementation. The papers cannot be reproduced for download here but an abstract is given below. (However, they can readily be obtained via a Google search and downloaded from the publishers.)
+**PowerPoint slides** (in PDF format) of my presentation at the BICA section of the HLAI-18 in Prague, Czech Republic can be downloaded from this GitHub page, and give an idea of the key concepts behind the Meaningful-Based Cognitive Architecture and the MBLS implementation. 
 
 **Excerpts of paper**:
 

@@ -3,22 +3,22 @@ Version 3.0  Meaningful Based Learning System (MBLS)
 
 The 'Meaningful Based Learning System' (**MBLS**) is an implementation of the **Meaningful Based Cognitive Architecture**.
 
-**version 1** - Winter 2017 - Initial transfer from whiteboards to Python simulation. No ANN libraries. Handcoded in Python 2.7.
+**version 1** - Winter 2017 - Initial transfer from whiteboards to Python simulation. No ANN libraries. Hand coded in Python 2.7.
 Shannon diversity used to assess meaningfulness values.
 
-**version 2** - Spring 2018 - Refactored to Python 3.6. Handcoded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules still simulated by Python methods rather than being simulated by some of the collection of connected simulated HLNs. Causal memory now extensively used. Full development prematurely terminated for transition to Version 3 to allow collaboration and to more scientifically address concepts that the Meaningful-Based Cognitive Architecture proposes.
+**version 2** - Spring 2018 - Refactored to Python 3.6. Hand coded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules still simulated by Python methods rather than being simulated by some of the collection of connected simulated HLNs. Causal memory now extensively used. Full development prematurely terminated for transition to Version 3 to allow collaboration and to more scientifically address concepts that the Meaningful-Based Cognitive Architecture proposes.
 
 **version 3** - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team collaboration with the code. Robert C. Martin's Clean Code software architecture and style being followed. HLNs are being ramped up to 50,000 from a few dozen in previous versions, with the goal of obtaining quantitative experimental data to better validate key concepts behind the Meaningful-Based Cognitive Architecture.
 
 See below for key concepts that I wish to demonstrate in MBLS-3. 
 
-**Papers** describing the Meaningful-Based Cognitive Archtiecture and the MBLS:
+**Papers** describing the Meaningful-Based Cognitive Architecture and the MBLS:
 
 (The papers cannot be reproduced in full for download here but an abstract is given below. However, they can readily be obtained via a Google search and downloaded from the publishers.)
 
 Schneider, H., Non-Hybrid Meaningful-Based Learning System Using a Configurable Network of Neural Networks. Proceedings of the 2018 International Conference on Artificial Intelligence pp 96-102; Aug 2018.
 
-Schneider, H., Meaningful-Based Cognitive Architecture. Proceedings of the 2018 Annual International Conference on Biologically Inpsired Architectures (BICA 2018) held on August 22, 2018 as part of the Joint Multi-Conference on Human-Level Artificial Intelligence (HLA-18).
+Schneider, H., Meaningful-Based Cognitive Architecture. Proceedings of the 2018 Annual International Conference on Biologically Inspired Architectures (BICA 2018) held on August 22, 2018 as part of the Joint Multi-Conference on Human-Level Artificial Intelligence (HLA-18).
 
 https://www.respekt.cz/spolecnost/muze-pocitac-trpet-psychozou
 
@@ -63,7 +63,7 @@ At the time of this writing, despite the human-like performance of artificial ne
  - Better implementation of causal memory.
  - Better use of causal memory in the Working Memory to allow one-example learning
  - Better use of causal memory in the Working Memory to allow one-example extrapolation
- - Show separation of Procedural Memory and Declarative Memory as most Cognitive Architectures do, is not neccessary
+ - Show separation of Procedural Memory and Declarative Memory as most Cognitive Architectures do, is not necessary
  - To show meaningfulness feature extracts more data out of an input sensory vector than not using the feature
  - To see if backpropagation of MBLS-2 between the HLNs can be replaced by one-shot reinforcement learning in MBLS-3
  - To better define minimal intuitive physics required
@@ -81,12 +81,12 @@ At the time of this writing, despite the human-like performance of artificial ne
  - More realistic Python quasi-back propagation
  - Implement the discrete learning features made available in the previous version/ implement semantic nets
  - Better use of the dual functions of the feedback vector to the HLNs -- meaningfulness and learning of the pattern at hand
- - Better use of the system-wide meaningulness feedback vector
+ - Better use of the system-wide meaningfulness feedback vector
  - Fine tuning of the vector convergence circuitry in the HLN simulation so that the Hopfield nets remain usable in a large network
  - Start transition from the Python high functional simulation of the Working Memory to simulation by individual HLNs
  - More dynamic algorithms for reconfiguration of the HLNs rather than the very static algorithms used in previous version
  - Start implementing the functions of the sequential/error-correcting module and interweave with the rest of the MBLS
- - Consider implementing meta-prototyping structures versus intuitive algos
+ - Consider implementing meta-prototyping structures versus intuitive algorithms
  - To better define minimal algorithms for world building
  - To better define minimal algorithms for logic operations on world models from causal memory
  - Given all the other structures, to better define minimal algorithms for common sense-like ability

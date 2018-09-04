@@ -8,7 +8,7 @@ Shannon diversity used to assess meaningfulness values. (No GitHub repository ev
 
 **version 2** - Spring 2018 - Refactored to Python 3.6. Hand coded. No ANN libraries. Reciprocal of Shannon entropy now used to assess meaningfulness. MBLS modules still simulated by Python methods rather than being simulated by some of the collection of connected simulated HLNs. Causal memory now extensively used. Full development prematurely terminated for transition to Version 3 to allow collaboration and to more scientifically address concepts that the Meaningful-Based Cognitive Architecture proposes. (No GitHub repository ever created -- local files.)
 
-**version 3** - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team collaboration with the code. Robert C. Martin's Clean Code software architecture and style being followed. HLNs are being ramped up to 50,000 from a few dozen in previous versions, with the goal of obtaining quantitative experimental data to better validate key concepts behind the Meaningful-Based Cognitive Architecture. (GitHub repository is MBLS-3.0 )
+**version 3** - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team collaboration with the code. HLNs are being ramped up to 50,000 from a few dozen in previous versions, with the goal of obtaining quantitative experimental data to better validate key concepts behind the Meaningful-Based Cognitive Architecture. (GitHub repository is MBLS-3.0 )
 
 See below for key concepts that I wish to demonstrate in MBLS-3. 
 

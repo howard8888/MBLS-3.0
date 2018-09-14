@@ -1,11 +1,11 @@
 #
 #
-#MBLS Simulation 
+#MBLS Simulation
 #Meaningful Based Learning System implementation of the Meaningful-Based Cognitive Architecture
-#Language: Python 3.6  
+#Language: Python 3.6
 #CPU, GPU, OS: Independent unless noted below
 #
-#Howard Schneider
+#Person(s) working on this project: Howard Schneider
 #howard.schneider@gmail.com
 #
 #
@@ -16,20 +16,21 @@
 #should tell a story to you, dear reader, just as any good book would. The language thus
 #chosen is English-like Python (with a smattering of optimized C++ at the readable level).
 #We do not program aimlessly to add more features or this or that -- we program to tell
-#you a story.
+#you a story.sleep
 #
 #  Table of Contents
 #  -----------------
 #  0. Preface: Version and Technical Notes
 #  1. Introduction: Why Create this Program?
-#  2. Lower-Level Assist Functions
+#  2. Sleep/Wake and Autonomic Functions
+#  3. Lower-Level Assist Functions
 #     2a. Main Module Lower-Level Assist Functions
 #     2b. Imported Module
-#  3. High-Level MBLS Architecture Visible Functions
+#  4. High-Level MBLS Architecture Visible Functions
 #     3a. Main Module High-Level MBLS Architecture Visible Functions
 #     3b. Imported Module
-#  4. Main Program Code
-#  5. Embedded Software Management
+#  5. Main Program Code
+#  6. Embedded Software/Hardware Management
 #
 #
 
@@ -42,14 +43,15 @@
 #------------
 VERSION_NUMBER = 3.01
 VERSION_FILE_NAME = 'mbls301.py'
-'''Migration history: 1.0 Pyth27 -> 2.0 Pyth36
+'''
+Migration history: 1.0 Pyth27 -> 2.0 Pyth36
 	-> 2.0x Basic MBLS -> goal 2.1x MBLS 5000 HLNs -> work prematurely stopped for transition to
 	->MBLS 3.0:
 	-details of MBLS 3.0 on GitHub page
 	-simulation to be tailored with capabilities to handle simple case of MBLS search-and-rescue robot
 	-no longer focus on recognizing digits but general sensory inputs
 	-ramp up to 50,000 HLNs
-	-'''
+	'''
 #Prerequisite Knowledge
 #----------------------
 '''To make sense of this program you need have/acquire the following prerequisite knowledge -- all doable
@@ -79,6 +81,72 @@ your own outside of a classroom.)
 #---------------
 '''
 '''
+#
+#Programming Style
+#-----------------
+#The programming style is a very simple one in theory: "write for you, the reader, not the computer."
+#-We thus use an English-like language such as Python as much as possible. We thus avoid showing the 
+#cleverness of the coder by combining 7 actions in a single line when multiple lines would make this
+#more readable and understandable. 
+#-All the 'spaghetti code' of version 2 has been replaced (by virtue of necessity -- we are simulating a
+#search-and-rescue robot rather than the detection of numerical digits) or refactored to meet current style.
+#-Every piece of code is unit tested or equivalently tested. Before testing we consider what side effects
+#a function could have, and we try to test reasonably for these.
+#-We avoid short variable names but try to use names which allow you to follow what the variable represents. 
+#(Hard to remember what a variable means after seeing a hundred other variables.)
+#-We only use classes if really necessary to ensure a data structure is not abused by other parts of the
+#program. Otherwise we don't. Again, with apologies to the OO community, the class name is another piece of 
+#data for your brain to remember as you read through the code.
+#-Unfortunately, there is too much code to keep as a single 'Main' module and we do break up the code into
+#imported modules, so there is a class-like requirement (albeit without the class properties) to
+#remember the module name to remember, but we have tried to make this as gentle as possible for the 
+#human brain. (For development we import the rather explicit but long module 
+#names as a shortened abbreviation -- if we start accumulating too many modules, ie,
+#at the lower Ebbinghaus number of the human mind, we will replace the abbreviations with the full module name.)
+#-We keep functions as small as possible and will break them up if they cover too much
+#new material. We try to follow Martin's "Agile Software Development"/"Clean Coder" principle of functions
+#doing only one thing. (Although there would be too many functions in the code if we stuck to "one", but the 
+#principle is nonetheless respected.)
+#
+#
+#Biological Inspiration of Cognitive Architecture and Cognitive Functioning
+#--------------------------------------------------------------------------
+#With pride the MBLS implementation of the Meaningful-Based Cognitive Architecture is inspired by
+#biological neurological cognitive architectures and biological cognitive functioning. It is NOT the
+#goal of the MBLS to implement a simulation of a biological nervous system at a spiking-neuron level.
+#Actually it is NOT the intention of the MBLS to simulate a biological nervous system at a higher 
+#level either. Rather, we are inspired by biology, and use the valuable design nature has provided, 
+#to create the best possible artificial cognitive system. In doing so, however, there may be useful 
+#reflections that allow us to better understand the mammalian nervous system, albeit at the 
+#mesoscopic level and above. Again, we are inspired by biology, and our simulations may help increase 
+#the understanding the latter, but we design and program to create the best possible artificial 
+#cognitive functioning == best possible AGI (artificial general intelligence) == 
+#best possible HLAI (human level artificial intelligence)
+#
+#
+#Safety
+#------
+#Safety seems irrelevant at this early point of design and implementation of the MBLS, but such is the
+#argument in the AI and AGI communities that for systems which grow to become superintelligence 
+#systems it will be argued at their start that it is too early to spend time on safety issues (ie, safety 
+#in preventing the system from becoming some unproven superintelligent system that would exponentially
+#improve itself and then be a danger to humankind). However, we note one important difference of the 
+#MBLS versus other AGI potential systems -- the MBLS not only has an intuitive physics 
+#and intuitive psychology but also has among its intuitive systems an intuitive human culture system. 
+#Just as it knows at a very basic level that objects are permanent, for example, 
+#it knows at a very basic level its purpose is to benefit the humans it interacts with.
+#(There are many arguments in the AGI community why this or that safeguard is not adequate, and such 
+#arguments could also be applied to the intuitive human culture of the MBLS, but we argue in return this is 
+#a very strong safeguard for one, and and for two, at this point in the development of the MBLS we don't 
+#have the resources to spend more effort on this issue.)
+#
+#With regard to the potential for superintelligence, an honest answer would be "yes" -- if the number of 
+#working memories in the MBLS is increased and the quasi-instruction set that manipulates vectors in and to 
+#and from the working memories is made more sophisticated, and the algorithmic section is ramped up, 
+#then yes, a superintelligence of sorts should emerge. But, this is not the goal of the MBLS and 
+#no work is planned in this area.
+#
+#
 #Import MBLS Code Modules
 #------------------------
 #(MBLS program is much more readable by putting dependent functions into external modules which are imported 
@@ -127,6 +195,19 @@ gap. Their model involves an ANN which can read and write to an external memory,
 However, like the human brain, the meaningful-based learning system (MBLS), introduced below, can perform 
 the sensory processing associated with ANNs and the efficient symbolic logic associated with human 
 cognition, without the use of an external memory, i.e., it is not a physically hybrid system. 
+
+Abstract from 2018 Annual International Conference on Biologically Inspired Cognitive Architectures
+Meaningful-Based Cognitive Architecture by Howard Schneider:
+
+"An overview is given of the cognitive architecture of the biologically inspired meaningful-based learning 
+system (MBLS). The basic element of the MBLS is a reconfigurable Hopfield-like network (HLN) which can rapidly 
+connect to other HLNs depending on the level of abstraction which yields a practical maximal “meaningfulness,” 
+defined as the reciprocal of the Shannon entropy of the HLNs. Without any external memory the MBLS synergistically 
+processes external data (and internal data – “thoughts”) with sensory processing abilities found in neural networks 
+and some of the symbolic logical abilities found in human cognition. In practical applications the MBLS offers 
+near-simultaneous pattern recognition and comprehension. In modeling the development of psychotic disorders in humans, 
+the MBLS predicts that in many patients the etiology stems from the fragility of the working memory and the 
+integration of additional reasoning mechanisms during adolescence."
 ''' 
 #
 #Constants used for Developer Purposes
@@ -143,28 +224,64 @@ INPUT_WORD_LENGTH = 9
 #
 #Large Data Variables used in the Program
 #----------------------------------------
-Input_Vector_History=['start']
+Input_Vector_History = ['start']
 #
 #Overview
 #--------
 #Scroll down to "MAIN PROGRAM CODE" section to see what program does at aa
 #higher level, and then calls lower level functions.
 #
-#
-
+#TL;DR
+#-----
+'''This code is a simulation of a learning system that tries to combine neural network-like learning
+(eg, the way a deep learning network recognizes a photograph) with symbolic-like learning 
+(eg, if X=2 and Y=3 then X + Y should be 5). Scroll down to 'Main Program' section to see what the 
+code is doing.
+'''
 
 
 ####################
 
-#LOWER-LEVEL ASSIST FUNCTIONS -- help other functions do their tasks 
-#(further below are the MBLS Architecture functions)
-#Lower-level assist functions do one or a few lower-level tasks,
-#while the higher-level assist functions do more of function calling
-#to prevent too much code in the main code section
-#
-#def welcome function put into module extra_fcns.py
-#
-def set_debugging_level():	
-....
-....
+#SLEEP/WAKE AND AUTONOMIC FUNCTIONS 
 
+#The sleep/wake and autonomic functions are inspired by the analagous biological functions, but their purpose
+#is not to mimic nature but provide a useful level of very high overall control of the MBLS with regard to the 
+#sleep/wake functions, and to provide "stimulus->action"=="reflex" == "reptilian-like neurological functioning" 
+#ie, no cortical-like functioning but more of stimulus-action functioning although the strong caveat is made
+#here that reptiles and birds and have cortical-like portions of their pallium and the stimulus->action effect 
+#is actually much more involved and processed than say stimulus->action in a worm. Thus, really the autonomic
+#functions should be thought of as providing invertebrate-like stimulus->action processing, or if the case of
+#mammals is considered, basic reflexes and basic autonomic processing.
+#function but stimulat
+#
+#This section will be divided in future as number of functions grow into separate sleep/wake section, separate
+#reflex autonomic function section (useful for very fast decisions) and more processed autonomic function section.
+#
+#
+def sleep(phase):
+	'''
+	Enter sleep phase 1 - 3 -- normal sleep phases to accomplish various maintenance and energy conserving routines.
+	Sleep phase 4 causes hibernation of the MBLS, ie, it saves data and program exits.
+	Sleep phase 5 is considered REM -- again a phase to accomplish various maintenance routines.
+	Inspired by biology but goal is for MBLS to create a great AGI, not mimic the biological brain down to spiking neurons.
+	'''
+	#process hibernation sleep phase request	
+	if phase == 4:
+		print('MBLS has been put in a deep sleep phase 4 which we currently consider a hibernation rather than maintenance or energy-conserving state.')
+		if 'y' in input('Would you like to leave the MBLS asleep and exit? (y/n): '):
+			print('\n---->Hibernation is currently interpreted as a system exit code -- program will stop execution.')
+			if 'y' in input('Would you like to save data? (Reset operation will use this saved data)(y/n): '):
+				save_data()
+			print('System exit will now end program.')
+			return RESET_CODE_CREATE_NEW_MBSL
+		else:
+			phase = 3
+			print('No hibernation will occur. Sleep phase 4 converted to sleep phase {}.'.format(phase))
+
+	#process other sleep phase requests
+	if phase not in (1, 2, 3, 5): 
+		print('Possible coding error: sleep phase parameter {} entered is not a sleep inducing value -- no wake to sleep transition occurs.'.format(phase))
+		return -1	
+	else:
+		return set_sleep_phase(phase)
+		

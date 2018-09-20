@@ -130,8 +130,14 @@ abbreviations to the full module name.)
 new material.
 -TODO comments are encouraged. Be creative and be responsible -- add TODO's.
 (Note: While not all code editors track TODO's, Pylint will flag any TODO's.)
+-Type annotations are encouraged. A bit (but not much) extra work, but will not
+decrease readability (the goal of our style) and may prevent serious bugs creeping in.
+eg, add type annotation: eg, def sales_adder(a:int, b:int) -> int:
+    install type checking tool: eg, pip install mypy-lang
+    like a lint tool, use the type checker (eg, mypy) to type-check your program at build time
+-Ok to print error messages in interactive parts of the code, but in other areas consider more
+formal logging of events and errors via Python logging module.
 '''
-#
 #
 #Biological Inspiration of Cognitive Architecture and Cognitive Functioning
 #--------------------------------------------------------------------------
@@ -186,9 +192,9 @@ import sys  #Warning: DEPENDENCIES win64
 import os.path #Warning: DEPENDENCIES win64
 import platform
 import time
+import logging
 #from distutils.core import setup
 #from distutils.core import Extension
-#
 #
 #
 #Import Non-Standard Library Modules
@@ -363,7 +369,7 @@ to see what the code is doing.
 #and more processed autonomic function section.
 #
 #
-def sleep_selection(sleep_phase):
+def sleep_selection(sleep_phase: int) -> int:
     '''Allows setting of wake or sleep phase to another particular sleep phase.
 
     Sleep phase 1 - 3 -- normal sleep phases to accomplish various maintenance and energy
@@ -374,7 +380,7 @@ def sleep_selection(sleep_phase):
         brain down to spiking neurons.
 
     Args:
-        phase: what sleep phase to switch the MBLS into.
+        phase: what sleep phase to switch the MBLS into
 
     Returns:
         The sleep phase which the MBLS has now been switched to. (At present these phases can
@@ -394,7 +400,7 @@ def sleep_selection(sleep_phase):
             if 'y' in input('Would you like to save data? (y/n): '):
                 save_data()
             print('System exit will now end program.')
-            return RESET_CODE_CREATE_NEW_MBSL
+            return int(RESET_CODE_CREATE_NEW_MBSL)
         else:
             sleep_phase = 3
             print('No hibernation will occur. Sleep phase 4 converted to sleep '
@@ -407,9 +413,6 @@ def sleep_selection(sleep_phase):
               'value -- no wake to sleep transition occurs.'.format(sleep_phase))
         return -1
     else:
-     ....
-     ....
-     
-     
-     
+        ....
+        ....
         

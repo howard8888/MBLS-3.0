@@ -1,0 +1,43 @@
+#Requirements File Notes
+#-----------------------
+#-->This exists: A single requirements file.
+#-->NOT USED: requirements.txt is the production requirements file and requirements-dev.txt
+#is the devp't one, and has command to call the production file dependencies
+#
+#New Python Programmer Note:
+#   -Standard Library modules are automatically included with Python, thus you don't have to
+#install them with pip.
+#   -MBLS modules are **not** listed in PyPI, etc. You must
+#make sure these files are in the directory where your Python programs run (or else in path).
+#   -Third-party packages (ie, "dependencies"):
+#   >pip install -r requirements.txt  -- will install exact third-party dependencies
+#   If you have multiple projects, to avoid a mixture of different versions
+#of dependencies, use a virtual environment: 1. Use a new directory 2. >python -m venv mbls
+# 3. Go to mbls/Scripts (in Win) 4. >activate  5. (mbls)>  -- you are now in virtual envr't
+#   If you are in Windows and it will not allow you to download/install new files (you will
+#see error messages in the pip installation progress notes) then exit the command line, and
+#restart the command line with with Administrator privileges this time
+#   (While there are no guarantees, every effort is made to use safe third-party dependencies,
+#and these have been tested for malware. You should not be doing software development on the
+#same computer you do financial or other sensitive work. There are software solutions to such
+#security, but the easiest, and often quite economical one, is have a clean laptop for such use.)
+#
+#In future, if any module is not in PyPI for automatic pip installation, then installation
+#instructions will be given, and a copy of the module will also be on the GitHub page.
+#
+#Third-party dependencies can potentially wreak havoc. Thus, a justification note is required
+#for every third-party dependency used (as well to ensure license allows use):
+#import numpy as np
+#Justification note: Awesome Python/LibHunt: 9.6 popularity, 9.8 activity, >8000 stars
+#code quality ?? (L1 patchwork does not make sense), programmed in C, BSD license
+#"fundamental package needed for scientific computing with Python...."
+#import schedule
+#Justification note: Awesome Python/LibHunt: 8.8 popularity, 4.8 activity, >5000 stars
+#code quality L4 (lumnify scale), programmed in Python, MIT license
+#"Python job scheduling for humans. An in-process scheduler for periodic jobs that uses the
+#builder pattern for configuration. Schedule lets you run Python functions periodically at
+#predetermined intervals using a simple, human-friendly syntax."
+#
+#
+numpy==1.15.2
+schedule==0.5.0

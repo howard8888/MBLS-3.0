@@ -5,6 +5,7 @@
 #MBLS Simulation
 #Meaningful Based Learning System implementation of the Meaningful-Based Cognitive Architecture
 #Language: Python 3.6
+#Lang Note October 2018: Due to testing under 3.6 will not upgrade to higher version for moment.
 #CPU, GPU, OS: Independent unless noted below
 #
 #Person(s) working on this project: Howard Schneider
@@ -198,8 +199,7 @@ import platform
 import time
 import threading    #Warning: platform DEPENDENCIES uncertain
 import logging
-#from distutils.core import setup
-#from distutils.core import Extension
+import unittest
 #
 #
 #Import Third-Party Dependencies
@@ -212,6 +212,7 @@ import logging
 #-New Programmer note: If you have multiple projects, to avoid a mixture of different versions
 #of dependencies, use a virtual environment: 1. Use a new directory 2. >python -m venv mbls
 # 3. Go to mbls/Scripts (in Win) 4. >activate  5. (mbls)>  -- you are now in virtual envr't
+#(Win: use command line, not PowerShell. Can't use venv in PS until MBLS uses Python 3.8+.)
 #-In future, if any module is not in PyPI for automatic pip installation, then installation
 #instructions will be given, and a copy of the module will also be on the GitHub page.
 #-Third-party dependencies can potentially wreak havoc. Thus, a justification note is required
@@ -294,8 +295,8 @@ comprehension. In modeling the development of psychotic disorders in humans, the
 predicts that in many patients the etiology stems from the fragility of the working memory
 and the integration of additional reasoning mechanisms during adolescence." '''
 #
-#Suggested References (updated regularly)
-#----------------------------------------
+#Suggested References (last update: Sept 2018)
+#---------------------------------------------
 
 #pylint: disable=line-too-long
 '''
@@ -425,7 +426,7 @@ def sleep_selection(sleep_phase: int) -> int:
 
     '''
     if sleep_phase == 4:
-        print('Deep Sleep Phase 4 - Hibernation rather than Maintenance/Engergy Conservation')
+        print('Deep Sleep Phase 4 - Hibernation rather than Maintenance/Energy Conservation')
         if 'y' in input('Would you like to leave the MBLS asleep and exit? (y/n): '):
             print('Hibernation treated as a system exit code -- program will stop running.')
             if 'y' in input('Would you like to save data? (y/n): '):

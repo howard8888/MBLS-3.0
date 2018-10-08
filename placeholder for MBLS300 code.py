@@ -10,6 +10,8 @@
 #
 #Person(s) working on this project: Howard Schneider
 #howard.schneider@gmail.com
+#License: https://github.com/howard8888/MBLS-3.0
+#Wiki, ReadMe and other info: https://github.com/howard8888/MBLS-3.0/wiki
 #
 #
 
@@ -112,11 +114,9 @@ the program.)
 -All the 'spaghetti code' of MBLS version 2 has been replaced (by virtue of necessity -- we are
 simulating a search-and-rescue robot rather than the detection of numerical digits) or has been
 refactored to meet current style.
--Every piece of code is unit tested or equivalently tested. Before testing we consider what
-side effects a function could have, and we try to test reasonably for these. We try to test
-sufficiently so that we don't litter our code with Exceptions and decrease readability and
-possibly introduce errors in flow control. However, where necessary, of course error control
-code is used.
+-We increase the probability of the code being reliable by unit testing and functional testing.
+In keeping with the philosophy above, we favor easy to use and to read testing frameworks (eg,
+Pytest-like) versus more complex ones (eg, PyUnit/unittest-like). See below for details.
 -We avoid short variable names but try to use names which allow the reader to follow what
 the variable represents. (Hard to remember what a variable means after seeing a hundred other
 variables.)
@@ -199,7 +199,6 @@ import platform
 import time
 import threading    #Warning: platform DEPENDENCIES uncertain
 import logging
-import unittest
 #
 #
 #Import Third-Party Dependencies
@@ -212,7 +211,6 @@ import unittest
 #-New Programmer note: If you have multiple projects, to avoid a mixture of different versions
 #of dependencies, use a virtual environment: 1. Use a new directory 2. >python -m venv mbls
 # 3. Go to mbls/Scripts (in Win) 4. >activate  5. (mbls)>  -- you are now in virtual envr't
-#(Win: use command line, not PowerShell. Can't use venv in PS until MBLS uses Python 3.8+.)
 #-In future, if any module is not in PyPI for automatic pip installation, then installation
 #instructions will be given, and a copy of the module will also be on the GitHub page.
 #-Third-party dependencies can potentially wreak havoc. Thus, a justification note is required
@@ -227,7 +225,6 @@ import schedule
 #"Python job scheduling for humans. An in-process scheduler for periodic jobs that uses the
 #builder pattern for configuration. Schedule lets you run Python functions periodically at
 #predetermined intervals using a simple, human-friendly syntax."
-#
 #
 #Import MBLS Code Modules
 #------------------------
@@ -345,6 +342,9 @@ DEPENDENCIES = ['python36', 'win64']
 #-------------------------------------------------------
 RESET_CODE_CREATE_NEW_MBSL = '9999'
 INPUT_WORD_LENGTH = 9
+#
+#Constants used for MultThreading and Embedded Development and Execution
+#-----------------------------------------------------------------------
 EMBEDDED_MBLS_MULTITHREAD_INTERVALS_SECONDS = 2
 EMBEDDED_MBLS_PAUSE_MULTITHREAD_INTERVALS_SECONDS = 0.02
 #
@@ -365,6 +365,27 @@ LOG_FILE = 'mbls_dump.log'
 logging.basicConfig(filename=LOG_FILE, level=logging.DEBUG)
 logging.info(time.strftime("%c"))
 #
+#Unit and Functional Testing Configuration
+#-----------------------------------------
+#We increase the probability of the code being reliable by unit testing and functional testing.
+#In keeping with the philosophy above, we favor easy to use and to read testing frameworks (eg,
+#Pytest-like) versus more complex ones (eg, PyUnit/unittest-like).
+#>pip install pytest
+#In file test_mblsxxxx.py put your test_functionxxxx, ie, your unit and other test functions.
+#>pytest test_mblsxxxx.py
+#Style Note: Consider keeping a commented copy of the test function in the mblsxxxx.py file beside
+#the actual function -- seeing both in the same field of vision can help create better tests.
+#New Programmer note: Be aware >pytest without a file will automatically find all sorts of files
+#with a "_test" in the name (sometimes even body) that you didn't even know existed leading to
+#strange errors. Pay attention to what directory tree Pytest is operating on if this happens.
+#
+PYTEST_UNIT_FILENAME = "test_mbls301.py"
+PYTEST_FIXTURES = None
+PYTEST_FUNCTIONAL1 = None
+PYTEST_FUNCTIONAL2 = None
+PYTEST_DEPLOYMENT = None
+PYTEST_MANUALIZED = None
+#
 #
 #Overview
 #--------
@@ -379,6 +400,13 @@ Scroll down to "MAIN PROGRAM CODE" section to see what program does at a
 learning (eg, the way a deep learning network recognizes a photograph) with symbolic-like
 learning (eg, if X=2 and Y=3 then X + Y should be 5). Scroll down to 'Main Program' section
 to see what the code is doing.
+
+   Use external 'pylint' for style, external 'pytest' (with a test_xxxx file) for unit testing,
+external 'mypy' for optional type checking, imported 'logging' for error and checkpoint logging (to
+xxxxx.log), imported 'threading' and 'schedule' for embedded real-time concurrent
+operation of the code, external 'pdb' (and/or other utilities) for debugging and code creation,
+and GitHub for version control -- all straightforward and open source resources. We program to
+tell a clear story and at the same time create an AGI.
 '''
 
 
@@ -444,5 +472,30 @@ def sleep_selection(sleep_phase: int) -> int:
               'value -- no wake to sleep transition occurs.'.format(sleep_phase))
         return_value = -1
     return return_value
+
+'''
+def test_sleep_selection():
+    Unit testing (via Pytest) of sleep_selection(sleep_phase)
+    
+    result = xx.sleep_selection(0)
+    assert result == -1
+    
+    result = xx.sleep_selection(1)
+    assert result == 1
+    
+    result = xx.sleep_selection(5)
+    assert result == 5
+    
+    result = xx.sleep_selection(6)
+    assert result == -1
+    '''
+
+'''
+	if    (random.randint(0,1) * phase)	> 0.5 :
+		print ('MBLS is asleep now in sleep phase now.\n')
+		return 1
+	else:
+		return 1
+'''
 ....
 ....

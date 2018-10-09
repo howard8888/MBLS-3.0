@@ -27,24 +27,25 @@
 #
 #  Table of Contents
 #  -----------------
-#  0. Preface: Version and Technical Notes
-#  1. Introduction: Why Create this Program?
-#  2. Sleep/Wake and Autonomic Functions
-#  3. Lower-Level Assist Functions
-#     2a. Main Module Lower-Level Assist Functions
-#     2b. Imported Module
-#  4. High-Level MBLS Architecture Visible Functions
-#     3a. Main Module High-Level MBLS Architecture Visible Functions
-#     3b. Imported Module
-#  5. Main Program Code
-#  6. Embedded Software/Hardware Management
+#  0.  Preface: Version and Technical Notes
+#  1.  Introduction: Why Create this Program?
+#  2.  Sleep/Wake and Autonomic Functions
+#  3.  Lower-Level Assist Functions
+#      2a. Main Module Lower-Level Assist Functions
+#      2b. Imported Module
+#  3A. Higher-Level Assist Functions
+#  4.  High-Level MBLS Architecture Visible Functions
+#      3a. Main Module High-Level MBLS Architecture Visible Functions
+#      3b. Imported Module
+#  5.  Main Program Code
+#  6.  Embedded Software/Hardware Management
 #
 #
 
 
 ####################
 
-#PREFACE: Version and Technical Notes
+#0. PREFACE: Version and Technical Notes
 #
 #Prerequisite Knowledge
 #----------------------
@@ -260,7 +261,7 @@ Migration history:
 
 ####################
 
-#INTRODUCTION: Why Create this Program?
+#1. INTRODUCTION: Why Create this Program?
 #
 #Introduction
 #------------
@@ -367,17 +368,15 @@ logging.info(time.strftime("%c"))
 #
 #Unit and Functional Testing Configuration
 #-----------------------------------------
-#We increase the probability of the code being reliable by unit testing and functional testing.
 #In keeping with the philosophy above, we favor easy to use and to read testing frameworks (eg,
 #Pytest-like) versus more complex ones (eg, PyUnit/unittest-like).
-#>pip install pytest
-#In file test_mblsxxxx.py put your test_functionxxxx, ie, your unit and other test functions.
-#>pytest test_mblsxxxx.py
-#Style Note: Consider keeping a commented copy of the test function in the mblsxxxx.py file beside
-#the actual function -- seeing both in the same field of vision can help create better tests.
+#-- >pip install pytest
+#-- 'test functions' with prefix 'test_' (eg, test_abcxxx) go into file PYTEST_UNIT_FILENAME
+#-- >pytest test_mblsxxxx.py    (or whatever filename in PYTEST_UNIT_FILENAME is)
+#Style Note: Ok to keep a commented copy of the test function (or a working copy to use via
+#in-program simulation of pytest)beside the actual function -- helps you create better tests.
 #New Programmer note: Be aware >pytest without a file will automatically find all sorts of files
-#with a "_test" in the name (sometimes even body) that you didn't even know existed leading to
-#strange errors. Pay attention to what directory tree Pytest is operating on if this happens.
+#with "_test" in name. Pay attention to what directory tree Pytest is operating on if this happens.
 #
 PYTEST_UNIT_FILENAME = "test_mbls301.py"
 PYTEST_FIXTURES = None
@@ -412,7 +411,7 @@ tell a clear story and at the same time create an AGI.
 
 ####################
 
-#SLEEP/WAKE AND AUTONOMIC FUNCTIONS
+#2. SLEEP/WAKE AND AUTONOMIC FUNCTIONS
 
 #The sleep/wake and autonomic functions are inspired by the analogous biological functions,
 #but their purpose is not to mimic nature but provide a useful level of very high overall
@@ -451,51 +450,51 @@ def sleep_selection(sleep_phase: int) -> int:
 
     Raises:
         --
-
     '''
-    if sleep_phase == 4:
+    logging.info('-in sleep_selection, sleep_phase = ')
+    logging.info(str(sleep_phase))
+    all_allowed_values = (1, 2, 3, 4, 5)
+    allowed_values_without_hibernation = (1, 2, 3, 5)
+    hibernation_value = 4
+    if sleep_phase == hibernation_value:
         print('Deep Sleep Phase 4 - Hibernation rather than Maintenance/Energy Conservation')
         if 'y' in input('Would you like to leave the MBLS asleep and exit? (y/n): '):
             print('Hibernation treated as a system exit code -- program will stop running.')
             if 'y' in input('Would you like to save data? (y/n): '):
                 save_data()
             print('System exit will now end program.')
+            logging.info('hibernation sleep phase parameter, return value will trigger sys exit')
             return_value = int(RESET_CODE_CREATE_NEW_MBSL)
         else:
             sleep_phase = 3
             print('No hibernation will occur. Sleep phase 4 converted to sleep '
                   'phase {}.'.format(sleep_phase))
-    if sleep_phase in (1, 2, 3, 5):
+    if sleep_phase in allowed_values_without_hibernation:
         return_value = set_sleep_phase(sleep_phase)
-    if sleep_phase not in (1, 2, 3, 4, 5):
+    if sleep_phase not in all_allowed_values:
         print('Coding: sleep phase parameter {} entered is not a sleep inducing '
               'value -- no wake to sleep transition occurs.'.format(sleep_phase))
         return_value = -1
+        logging.info('inappropriate sleep phase parameter detected....')
+    logging.info('leaving sleep_selection, return value = ')
+    logging.info(str(return_value))
     return return_value
 
-'''
-def test_sleep_selection():
-    Unit testing (via Pytest) of sleep_selection(sleep_phase)
-    
-    result = xx.sleep_selection(0)
-    assert result == -1
-    
-    result = xx.sleep_selection(1)
-    assert result == 1
-    
-    result = xx.sleep_selection(5)
-    assert result == 5
-    
-    result = xx.sleep_selection(6)
-    assert result == -1
-    '''
 
-'''
-	if    (random.randint(0,1) * phase)	> 0.5 :
-		print ('MBLS is asleep now in sleep phase now.\n')
-		return 1
-	else:
-		return 1
-'''
+def test_sleep_selection():
+    '''Unit testing of above function (with a "test_" prefix added)
+       -This function, with appropriate imported file prefixes to variables (since this program
+       must be imported) is stored in the Pytest testing file specified by PYTEST_UNIT_FILENAME.
+       -It can also used for testing directly within this program via Pytest-like feature in
+       development mode of the MBLS code.
+       -We stylistically allow keeping the unit test functions close to the actual functions, so
+       both can be examined together, encouraging the developer to create the most useful tests.
+       -Warning: Do NOT execute as part of normal program -- actual function is being called and
+       will have side effects on program. Run in external file or if within in special dev mode.
+    '''
+    for phase in [(0, -1), (1, 1), (2, 2), (3, 3), (4, 3), (5, 5), (6, -1)]:
+        assert sleep_selection(phase[0]) == phase[1]
+    logging.info('just completed unit tests for sleep_selection')
 ....
 ....
+

@@ -1,4 +1,4 @@
-# MBLS-3.0#
+# MBLS-3.0
 # Version 3.0 Meaningful Based Learning System (MBLS) #
 
 The 'Meaningful Based Learning System' (**MBLS**) is an implementation of the **Meaningful Based Cognitive Architecture**.

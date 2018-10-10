@@ -9,6 +9,8 @@ The MBLS creates an AGI (artificial general intelligence) via synergistically in
 
 See below for key concepts that I wish to demonstrate in MBLS-3.
 
+![<Image of 3 year old child with causal learning most neural networks cannot do>](https://github.com/howard8888/MBLS-3.0/blob/master/image_from_slidedeck_2.jpg)
+
 ## How to Install & Dev Environment ##
 This is a Python-based project. Installation is intended to be very straightforward.
 

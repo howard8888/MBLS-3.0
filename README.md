@@ -14,7 +14,7 @@ See below for key concepts that I wish to demonstrate in MBLS-3.
 
 **Papers** describing the Meaningful-Based Cognitive Architecture and the MBLS:
 
-(The papers cannot be reproduced in full for download here but an abstract is given below. However, they can readily be obtained via a Google search and downloaded from the publishers.)
+(A prepublication of the Procedia article is on this GitHub page for download.)
 
 Schneider, H., Non-Hybrid Meaningful-Based Learning System Using a Configurable Network of Neural Networks. Proceedings of the 2018 International Conference on Artificial Intelligence pp 96-102; Aug 2018.
 

@@ -433,10 +433,12 @@ tell a clear story and at the same time create an AGI.
 def sleep_selection(sleep_phase: int) -> int:
     '''Allows setting of wake or sleep phase to another particular sleep phase.
 
+    Sleep phase 0 -- awake
     Sleep phase 1 - 3 -- normal sleep phases to accomplish various maintenance and energy
-        conserving routines.
+        conserving routines (light sleep can be useful for the embedded version of the code)
     Sleep phase 4 causes hibernation of the MBLS,ie, it (optionally) saves data and program exits.
     Sleep phase 5 is considered REM -- again a phase to accomplish various maintenance routines.
+    Sleep phase 6 - 9 -- anesthetic states to allow system debug and repair operations
     Inspired by biology but goal is for MBLS to create a great AGI, not mimic the biological
         brain down to spiking neurons.
 
@@ -444,40 +446,44 @@ def sleep_selection(sleep_phase: int) -> int:
         sleep_phase: what sleep phase to switch the MBLS into
 
     Returns:
-        The sleep phase which the MBLS has now been switched to. (At present these phases can
-            be 1,2,3,4 or 5.
+        The sleep/wake/debug phase which the MBLS has now been switched to. (At present these phases can
+            be 0 to 9.)
         -1 if an error occurred.
 
     Raises:
         --
+    Style note for this function near top of program: Written so human mind can easily follow
+    assumptions and logic. While, for the sake of example, using a dictionary of functions to
+    emulate a switch/case structure, instead of the if/then's below would operate faster (ie,
+    jump to dict item rather than go through a sequence of if/then's, this is immaterial in this
+    section of the code. Except in critical areas of the code, we write for the reader,
+    not the computer.
     '''
-    logging.info('-in sleep_selection, sleep_phase = ')
-    logging.info(str(sleep_phase))
-    all_allowed_values = (1, 2, 3, 4, 5)
-    allowed_values_without_hibernation = (1, 2, 3, 5)
+    logging.info(' '.join(['-in sleep_selection, sleep_phase = ', str(sleep_phase)]))
+    all_allowed_values = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     hibernation_value = 4
+    avoid_hibernation_conversion_value = 3
+
     if sleep_phase == hibernation_value:
         print('Deep Sleep Phase 4 - Hibernation rather than Maintenance/Energy Conservation')
         if 'y' in input('Would you like to leave the MBLS asleep and exit? (y/n): '):
             print('Hibernation treated as a system exit code -- program will stop running.')
             if 'y' in input('Would you like to save data? (y/n): '):
+                logging.info('call to save data before system exit')
                 save_data()
-            print('System exit will now end program.')
+            print('Thank you....system exit underway....')
             logging.info('hibernation sleep phase parameter, return value will trigger sys exit')
             return_value = int(RESET_CODE_CREATE_NEW_MBSL)
         else:
-            sleep_phase = 3
-            print('No hibernation will occur. Sleep phase 4 converted to sleep '
-                  'phase {}.'.format(sleep_phase))
-    if sleep_phase in allowed_values_without_hibernation:
+            sleep_phase = avoid_hibernation_conversion_value
+            print('Hibernation cancelled. New sleep phase is {}.'.format(sleep_phase))
+    if sleep_phase in all_allowed_values and sleep_phase != hibernation_value:
         return_value = set_sleep_phase(sleep_phase)
     if sleep_phase not in all_allowed_values:
-        print('Coding: sleep phase parameter {} entered is not a sleep inducing '
-              'value -- no wake to sleep transition occurs.'.format(sleep_phase))
+        print('Coding: sleep phase parameter {} not valid. No effect.'.format(sleep_phase))
         return_value = -1
         logging.info('inappropriate sleep phase parameter detected....')
-    logging.info('leaving sleep_selection, return value = ')
-    logging.info(str(return_value))
+    logging.info(' '.join(['leaving sleep_selection, return value = ', str(return_value)]))
     return return_value
 
 
@@ -492,7 +498,10 @@ def test_sleep_selection():
        -Warning: Do NOT execute as part of normal program -- actual function is being called and
        will have side effects on program. Run in external file or if within in special dev mode.
     '''
-    for phase in [(0, -1), (1, 1), (2, 2), (3, 3), (4, 3), (5, 5), (6, -1)]:
+    for phase in [(-888, -1), (0, 0,), (1, 1), (2, 2), (3, 3), (4, 3),
+                  (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (55, -1)]:
+        if phase[0] == 4:
+            print("Unit testing: Interactive input required: ****Do NOT opt to exit program****")
         assert sleep_selection(phase[0]) == phase[1]
     logging.info('just completed unit tests for sleep_selection')
 ....

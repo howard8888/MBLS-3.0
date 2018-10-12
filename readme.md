@@ -78,14 +78,15 @@ Sheppard Clinic North, Toronto, ON, Canada
 
 ## Key concepts to demonstrate in MBLS-3: ##
 
-- To better describe the architecture of the MBLS from a conventional classification. (Keep in mind that the MBLS "arbitrary program" actually changes with each sensory input or internal input (ie, "thought") -- it is no longer the same program or machine.) Empirically show the MBLS must act as a Turing machine when the Working Memory is used, but at other times can act as a super-Turing machine, with the caveat that this description may not be valid, ie, do such machines even exist theoretically.
-
 
 - To show that psychosis (retrieval of incorrect vectors not associated with the reality at hand and cognitive dysfunction) is inevitable if Working Memory without error-correcting circuitry or software is used and becomes stressed.
 
 
 - To show that an intervention that reduces the likelihood of psychosis in the MBLS will by analogous intervention reduce the likelihood of a young person of developing chronic schizophrenia.
-50,000 proposed HLNs for MBLS-3 are not sufficient to implement the presentation example (eg, see slides which can be downloaded from this GitHub page) of the MBLS Search-and-Rescue Robot, but are enough to show a simplified Search-and-Rescue Robot simulation.
+
+
+
+- 50,000 proposed HLNs for MBLS-3 are not sufficient to implement the presentation example (eg, see slides which can be downloaded from this GitHub page) of the MBLS Search-and-Rescue Robot, but are enough to show a simplified Search-and-Rescue Robot simulation.
 
 
 - Better implementation of causal memory.
@@ -203,3 +204,5 @@ Sheppard Clinic North, Toronto, ON, Canada
 
 
 - Self-awareness (consciousness center/emotional/reward module) solving class imbalance problem and resulting overfitting to correct
+
+- To better describe the architecture of the MBLS from a conventional classification. Empirically show the MBLS must act as a Turing machine when the Working Memory is used (ie, as per the CT thesis a person with pen and paper could come up with the same results), but at other times can act as a super-Turing machine (ie,  person with pen and paper could not compute the results of the MBLS), with, of course, the caveat that this description may not be valid, ie, are such machines even theoretically possible according to a more expert reading of the CT thesis.

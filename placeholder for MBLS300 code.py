@@ -1,11 +1,10 @@
 #!/usr/bin/python3
 #pylint: disable=too-many-lines
-#pylint: disable=pointless-string-statement
+#justification: convenience during devp't of related code in one place; prod'n to module
 #
 #MBLS Simulation
 #Meaningful Based Learning System implementation of the Meaningful-Based Cognitive Architecture
 #Language: Python 3.6
-#Lang Note October 2018: Due to testing under 3.6 will not upgrade to higher version for moment.
 #CPU, GPU, OS: Independent unless noted below
 #
 #Person(s) working on this project: Howard Schneider
@@ -14,16 +13,14 @@
 #Wiki, ReadMe and other info: https://github.com/howard8888/MBLS-3.0/wiki
 #
 #
-
-
+#
 ####################
 
 #TABLE OF CONTENTS
 #Software is (or should be) written for humans, not computers. The source code below
 #should tell a story to you, dear reader, just as any good book would. The language thus
-#chosen is English-like Python (with a smattering of optimized C++ at the readable level).
-#We do not program aimlessly to add more features or this or that -- we program to tell
-#you a story (and in the process create an AGI).
+#chosen is English-like Python. We do not program aimlessly to add more features or this or
+#that -- we program to tell you a story (and in the process create an AGI).
 #
 #  Table of Contents
 #  -----------------
@@ -50,50 +47,45 @@
 #Prerequisite Knowledge
 #----------------------
 '''
-To make sense of this program you need have/acquire the following prerequisite knowledge-- all
+To make sense of this program you need to have/acquire the following prerequisite knowledge-- all
 doable and constituting a wonderful journey, for you dear reader. (Please ignore the parts you
 have a background in.)
 
 1. Be able to write some small Python programs.
 
-You will not be able to read Python if you
-have never written the code. You probably already have this skill, or a skill in a related
-language, so not a big issue. However, if you don't, consider acquiring this skill. Allocate
-200 hours to doing so. There are a myriad of available courses.
+You will not be able to read Python if you have never written the code. If no programming
+experience, consider acquiring this skill. Allocate 200 hours. A myriad of online courses exist.
 
 2. Understand at a basic level the landscape of data science and machine learning.
 
-Again, you cannot just read this material -- you need to do some projects. You probably have
+Again, you cannot just read this material -- you need to do some projects. You may have
 this skill (no one is expert in every aspect of data science/ machine learning -- it is too
-large), but again, if you don't, consider acquiring this skill. If you have a math background
-allocate 200 hours to doing so, if no math background (feel comfortable with matrices and partial
-derivatives) then allocate an extra 200 hours, ie, 400 hours in total. Again, if you have
-the motivation and time, very doable with a myriad of available courses.
+large), but again, if you don't, consider acquiring it. If you have a math background allocate
+200 hours, if no math background (feel comfortable with matrices and partial derivatives) then
+then allocate an extra 200 hours, ie, 400 hours in total. There are a myriad of available courses.
 
 3. Have an introductory background in computer theory and cognitive science.
 
 This is essential to understand why we are doing the things we are doing. The large question
 is why even write this program? Why not just use one of those deep learning neural networks
-that already exist and seem to do magical "AI" things? There are some online courses that
-cover these subjects (ie, computer theory subject, cognitive science subject), but to save
-time, consider for computer theory working through the book Algorithmics by David Harel, about
-40 hours of your time (this is introductory and you may already have this knowledge),
-and for cognitive science consider allocating 20 hours to reading papers in the references below.
-("Reading papers" -- you really should make notes in a notebook so
-that you will better acquire this information if you are learning it on your own outside
-of a classroom.)
+that already exist and seem to do magical "AI" things?
+To save time, consider working through the introductory book Algorithmics by David Harel, about
+40 hours,and for cognitive science consider allocating 20 hours to reading reference papers listed
+below. ("Reading papers" == making notes in a notebook so you learn the material.)
 
-4. Read some of the main references described below in the Introduction section.
-
-5. When you are reading the code please do not use a word processor but use a programming
-editor (eg, Notepad++ for Windows, or many others) which will show different parts of the code
-in different colors.
+4. When you read the code please use one the many programming editors (use Windows? try Notepad++)
+which will show different parts of the code in different colors.
 '''
+#pylint: disable=pointless-string-statement
+#justification: in this first section of the 'code' there is much documentation and explanation
+#
+#
 #Technical Notes
 #---------------
 '''
 Technical notes placeholder
 '''
+#
 #
 #Programming Style
 #-----------------
@@ -104,47 +96,41 @@ computer."
 For future (hopefully :) contributors to this project:
 
 -We thus use an English-like language such as Python as much as possible.
-(To avoid the need for C code in critical sections of the program, we attempt to ensure the code
- will run under PyPy, and as well, optimize such critical sections.)
+-To avoid the need for C code in critical sections of the program, we attempt to ensure the code
+will run under PyPy, and as well, optimize such critical sections.
 -Instead of having a long style section/manual for this project, please download and install
 Pylint. We use the arbitrary wisdom of Pylint to decide what style we should or shouldn't use,
 plus the general (if not philosophical) rules below.
 -We avoid showing the cleverness of the coder, eg, combining 7 actions in a single Python line
 when multiple lines would make this more readable and understandable. We write for the person
 who must read and understand the code; we don't write for ourselves nor for the computer. (With
-the small exception of optimized code routines where necessary for essential functioning of
-the program.)
+the small exception of optimized code routines where necessary for essential functioning.)
 -All the 'spaghetti code' of MBLS version 2 has been replaced (by virtue of necessity -- we are
-simulating a search-and-rescue robot rather than the detection of numerical digits) or has been
-refactored to meet current style.
--We increase the probability of the code being reliable by unit testing and functional testing.
-In keeping with the philosophy above, we favor easy to use and to read testing frameworks (eg,
-Pytest-like) versus more complex ones (eg, PyUnit/unittest-like). See below for details.
--We avoid short variable names but try to use names which allow the reader to follow what
-the variable represents. (Hard to remember what a variable means after seeing a hundred other
-variables.)
--We only use classes if really necessary to ensure a data structure is not abused by other
-parts of the program. Otherwise we don't. (Yikes!! But.... this is brain friendly code, not
-arbitrary OO friendly code). Again, with apologies to the OO world, the
-class name is another piece of data for your brain to remember as you read through the code.
+simulating a search-and-rescue robot rather than the detection of numerical digits).
+-We increase the reliability of the code by unit/functional testing. We favor easy to use/read
+unit tests (eg, Pytest-like) versus more complex ones (eg, PyUnit/unittest-like).
+-We catch the heisenbugs -- we create a 'verbose' mode in unit tests and as well do formal logging
+of checkpoint events outside of unit tests in normal program running.
+-We respect that humans have operating characteristics, to wit, the Ebbinghaus/Miller capacity of
+the human mind to process information -- possibly 7 ± 2 items.
+-We avoid short variable names but try to use names which allow the reader to follow what the
+variable represents. (Hard to remember what a variable means after seeing a hundred other ones.)
+-We avoid cargo cult programming -- no copying of code and no code that is not justified with
+regards to this AGI project
+-In keeping with the avoidance of cargo cult phenomena, we only use classes if really necessary
+to ensure a data structure is not abused by other parts of the program. Otherwise we don't.
+(Yikes!! But.... this is brain friendly code, not arbitrary OO friendly code). Again, with
+apologies to the OO world, the class name is another piece of data for your brain to remember.
 -Unfortunately, there is too much code to keep as a single 'Main' module and we do break up
-the code into imported modules, so there is a requirement (albeit without the class
-properties) to remember the module name, but we have tried to make this as
-gentle as possible for the human brain. (For development we import the rather explicit
-but long module names as a shortened abbreviation -- if we start accumulating too many
-modules, ie, at the lower Ebbinghaus number of the human mind, then we will change the
-abbreviations to the full module name.)
--We keep functions as small as possible and will break them up if they cover too much
-new material.
--TODO comments are encouraged. Be creative and be responsible -- add TODO's.
-(Note: While not all code editors track TODO's, Pylint will flag any TODO's.)
--Unsure if type 'checking' will make a significant difference in preventing serious errors,
-ie, at the level of a static language, so at this time type annotations are 'encouraged' so in
-the future code can be checked by a type checker. Extra work but no effect on readability.
+the code into imported modules, so there are module names but we make as easy to remember.
+-We keep functions as small as possible and will -- if appropriate -- break them up if they cover
+too much new material (except verbose mode added for in/unit testing purposes).
+-TODO comments are actually encouraged. (Pylint and some editors will track/flag TODO's.)
+-Type annotations are 'encouraged' (but not mandatory as effectiveness uncertain).
 At present mypy used (to install: pip install mypy-lang) (to run:eg, mypy mbls300.py)
--Ok to print error messages in interactive parts of the code, but in other areas consider more
-formal logging of events and errors via Python logging module.
+-Ok to disable Pylint warnings but provide a justification and enable when appropriate
 '''
+#
 #
 #Biological Inspiration of Cognitive Architecture and Cognitive Functioning
 #--------------------------------------------------------------------------
@@ -164,6 +150,28 @@ artificial intelligence).
 '''
 #
 #
+#Reproducibility
+#---------------
+'''
+The basis of the scientific method (of which just about all the scientific, medical, technological
+wonders around you emerged from) is reproducibility -- the studies/experiments/work of others
+must be able to be replicated by you (assuming appropriate knowledge and equipment, of course).
+However, there is somewhat of a "reproducibility crisis" in science, particularly severe in the
+cognitive sciences, eg, Science,2015 Aug 28;349(6251), "Estimating the reproducibility of
+psychological science" -- a huge percentage of published work cannot be replicated. This issue
+extends to neural networks and the whole field of artificial intelligence, eg, Science,2018 Feb 16
+;359(6377):725-726, "Artificial intelligence faces reproducibility crisis."
+
+Thus, in the MBLS project we make every effort to ensure that you, dear reader, can reproduce the
+workings of the MBLS and reproduce our results. Without getting into the fringe areas of the
+'Entscheidungsproblem' (eg, is the MBLS super-Turing because a person with paper and pen could not
+reproduce certain operations of the MBLS(actually, according to CT thesis this should not occur)),
+while results may vary from run to run, from overall simulation to simulation, we endeavor to show
+the consistencies in patterns and findings. Most important, is that you can reproduce the MBLS and
+you can reproduce these consistencies.
+'''
+#
+#
 #Safety
 #------
 '''
@@ -179,8 +187,8 @@ basic level that objects are permanent, for example, it knows at a very basic le
 purpose is to benefit the humans it interacts with. (There are many arguments in the AGI
 community why this or that safeguard is not adequate, and such arguments could also be applied
 to the intuitive human culture of the MBLS, but we argue in return this is a very strong
-safeguard for one, and and for two, at this point in the development of the MBLS we don't
-have the resources to spend more effort on this issue.)
+safeguard for one, and and for two, with apologies for the irony, at this point in the development
+of the MBLS we don't have the resources to spend more effort on this issue.)
 
 With regard to the potential for superintelligence, an honest answer would be "yes" -- if the
 number of working memories in the MBLS is increased and the quasi-instruction set that
@@ -189,8 +197,21 @@ and the algorithmic section is ramped up, then yes, a superintelligence of sorts
 emerge. But, this is not the goal of the MBLS and no work is planned in this area.
 '''
 #
+#
+#
+#Flags used for Development Purposes
+#-----------------------------------
+MEMORY_CHECKING_ON = True
+TEST_VERBOSITY = True
+FORCE_EMBEDDED_MAIN = False
+CHECKPOINT_ON = False
+DEVELOPER_USER = True
+STOP_SCROLLING_BETWEEN_INPUTS = True
+#
+#
 #pylint: disable=wrong-import-position
 #pylint: disable=unused-import
+#justification: better documentation of dependencies
 #Import Python3 Standard Library Modules
 #---------------------------------------
 #-New Python programmer note: No need to install anything -- Python will automatically import.
@@ -203,6 +224,7 @@ import time
 import pickle
 import threading    #Warning: platform DEPENDENCIES uncertain
 import logging
+from io import StringIO
 #
 #
 #Import Third-Party Dependencies
@@ -219,16 +241,27 @@ import logging
 #instructions will be given, and a copy of the module will also be on the GitHub page.
 #-Third-party dependencies can potentially wreak havoc. Thus, a justification note is required
 #for every third-party dependency used (as well to ensure license allows use).
+#
 import numpy as np
 #Justification note: Awesome Python/LibHunt: 9.6 popularity, 9.8 activity, >8000 stars
 #code quality ?? (L1 patchwork does not make sense), programmed in C, BSD license
 #"fundamental package needed for scientific computing with Python...."
+#
 import schedule
 #Justification note: Awesome Python/LibHunt: 8.8 popularity, 4.8 activity, >5000 stars
 #code quality L4 (lumnify scale), programmed in Python, MIT license
 #"Python job scheduling for humans. An in-process scheduler for periodic jobs that uses the
 #builder pattern for configuration. Schedule lets you run Python functions periodically at
 #predetermined intervals using a simple, human-friendly syntax."
+#
+if MEMORY_CHECKING_ON:
+    from pympler import summary, muppy
+#Justification note: No Awesome Python/Libhunt rating; GitHub - 15 contributors, 376 stars,
+#programmed in Python , Apache License2.0
+#"Development tool to measure, monitor and analyze the memory behavior of Python objects in
+#a running Python application."
+#Note: At present, normally not imported except for occasional development work.
+#
 #
 #Import MBLS Code Modules
 #------------------------
@@ -244,11 +277,70 @@ import schedule
 import mbls3_low_level_functions as mbll
 import mbls_some_version2_low_level_functions as mbv2
 #
+#pylint: enable=wrong-import-position
+#pylint: enable=unused-import
+#
+#
+#Logging & Development Configuration
+#-----------------------------------
+#New Programmer note: LOG_FILE is a text file you can examine. It contains various checkpoints
+#and debug information posted each time the program runs.
+#LOG_FILE will become cumulatively larger. Please manually truncate or erase periodically.
+#Research note: Do not truncate or erase any results used for research purposes. Please archive.
+LOG_FILE = 'mbls_dump.log'
+logging.basicConfig(filename=LOG_FILE, level=logging.DEBUG)
+logging.info(time.strftime("%c"))
+#
+#
+#Unit and Functional Testing Configuration
+#-----------------------------------------
+#In keeping with the philosophy above, we favor easy to use and to read testing frameworks (eg,
+#Pytest-like) versus more complex ones (eg, PyUnit/unittest-like).
+#-- >pip install pytest
+#-- 'test functions' with prefix 'test_' (eg, test_abcxxx) go into file PYTEST_UNIT_FILENAME
+#-- >pytest test_mblsxxxx.py    (or whatever filename in PYTEST_UNIT_FILENAME is)
+#Style Note:    Ok to keep a commented copy of the test function (or a working copy to use via
+#in-program simulation of pytest) near the actual function -- helps you create better tests.
+#New Programmer note: Be aware >pytest without a file will automatically find all sorts of files
+#with "_test" in name. Pay attention to what directory tree Pytest is operating on if this happens.
+#               Specific exceptions always are better than general 'except' but for convenience
+#development, the latter will be allowed for now.
+#pylint: disable=bare-except
+#justification: at this point in development general exceptions are adequate
+#
+#
+PYTEST_UNIT_FILENAME = "test_mbls300.py"
+PYTEST_FIXTURES = None
+PYTEST_FUNCTIONAL1 = None
+PYTEST_FUNCTIONAL2 = None
+PYTEST_DEPLOYMENT = None
+PYTEST_MANUALIZED = None
+#
+#
+#New Programmer Development Setup Summary Note
+#---------------------------------------------
+#You're interested in gaining insight into the human mind and creating an AGI, you've read the
+#above and are ready to take the plunge. Let's summarize what you need to do:
+#1. Acquire the knowledge listed in the section higher above.
+#2. You may have used a learning environment to learn Python. Please uninstall it.
+#   Install Python with same version as listed above. ( https://www.python.org )
+#3. Install a proper code editor. (eg, Windows?  https://notepad-plus-plus.org/ )
+#4. Learn how use/setup GitHub (or equivalent git in future). ( https://github.com/ )
+#5. Install Pylint. ((command line)> pip install pylint )
+#6. Install mypy. ((command line)>pip install mypy-lang )
+#7. Install third-party dependencies as explained in the section above. There is a requirements.txt
+#   file (explained above) in the GitHub (or equiv) page -- use it.
+#8. You need to make sure the MBLS code modules (also on same GitHub (or equiv) page) are in
+#   the path of your program (tip- copy them to the directory you are using).
+#9. Install latest Pytest ((command line)>pip install pytest )
+#10.At the time of writing above is correct, but it will change, eg, in future perhaps we use a
+#   a different unit testing utility than Pytest, etc. Please read the comments above and below.
+#
 #
 #Version Info
 #------------
-VERSION_NUMBER = 3.01
-VERSION_FILE_NAME = 'mbls301.py'
+VERSION_NUMBER = 3.02
+VERSION_FILE_NAME = 'mbls302.py'
 '''
 Migration history:
 
@@ -261,8 +353,80 @@ Migration history:
 			-no longer focus on recognizing digits but general sensory inputs
 			-ramp up to 50,000 HLNs
 '''
+#
+#
+#Constants used for Program Specifications and Resources
+#-------------------------------------------------------
+RESET_CODE_CREATE_NEW_MBSL = '9999'
+INPUT_WORD_LENGTH = 9
+#
+#
+#Constants used for MultThreading and Embedded Development and Execution
+#-----------------------------------------------------------------------
+EMBEDDED_MBLS_MULTITHREAD_INTERVALS_SECONDS = 2
+EMBEDDED_MBLS_PAUSE_MULTITHREAD_INTERVALS_SECONDS = 0.02
+#
+#
+#Constants used for Managing & Storing Large Data Variables used in the Program
+#------------------------------------------------------------------------------
+IN_VECS_FILE = 'in_vecs.pkl'
+IN_VECS_FILE_TEST = 'tester1.pkl'
+START_VALUE = 'start'
+END_VALUE = 'end'
+SAMPLE_VALUE = 'sample'
+TOO_MANY_BYTES_TO_DISPLAY = 1000
+TOO_MANY_BYTES_FOR_NORMAL_STORAGE_ROUTINES = 1000000000
+#
+#
+#Global Variables
+#----------------
+#pylint: disable=invalid-name
+#justification: separate justification for every global variable used
+#
+in_vecs = []
+#Description: main data structure of MBLS system
+#Justification: development convenience, avoid emergence of complexity of class implement'n,
+#Warnings: survey memory usage, survey for potential side effects as use in devp't
+#Name change: in previous software versions "input_vector_history"
+#
+#New Programmer note: "If a variable is assigned a value anywhere within the function’s body, it’s
+#  assumed to be a local unless explicitly declared as global." -- python.org Programming FAQ
+#pylint: enable=invalid-name
+#
+#
+#Python Installation & Platform Specifications
+#---------------------------------------------
+#
+#
+#Note: This code block will run before main() or <alternative>_main() listed at bottom
+if DEVELOPER_USER:
+    try:
+        print('MBLS-3 Project: Python installed: ', os.path.dirname(sys.executable))
+    except:
+        print('Did not find where Python installed.')
 
+    try:
+        print('Version {} of "{}" was last saved/modified {}.'
+              .format(VERSION_NUMBER, VERSION_FILE_NAME, time.ctime(
+                  os.path.getmtime(VERSION_FILE_NAME))))
+        print('Platform Info (via StdLib): \n  ',
+              'os.name:', os.name, ', sys.platform:', sys.platform,
+              ', platform.system:', platform.system(),
+              ', platform.release:', platform.release(),
+              '\n  ', 'platform.processor:', platform.processor(), '\n  ',
+              'sys.maxsize (9223372036854775807 for 64 bit Python): ', sys.maxsize,
+              '\n   GPU resources: ', 'not determined at present')
+        if MEMORY_CHECKING_ON:
+            print("   Verify memory -- create 10,000 x 10,000 Numpy matrix ....")
+            print("   Interim:100x100")
+            print(np.zeros((100, 100)))
+        print("Ok.... basic infrastructure in place for program to run....\n\n")
+    except:
+        print('Exception occurred in retrieving platform specifications.')
+#
+#
 ####################
+
 
 #1. INTRODUCTION: Why Create this Program?
 #
@@ -300,6 +464,7 @@ and the integration of additional reasoning mechanisms during adolescence." '''
 #---------------------------------------------
 
 #pylint: disable=line-too-long
+#justification: non-code area, not worth reformatting
 '''
 [1]   Goodfellow, I., Bengio, Y. and Courville, A. Deep Learning. Cambridge, MA: MIT Press; 2016.
 [2]   Mnih, V., Kavukcuoglu, K., Silver, D. … Hassabis, D. Human-level control through deep reinforcement learning. Nature Feb 26;518(7540):529-33; 2015.
@@ -335,62 +500,6 @@ and the integration of additional reasoning mechanisms during adolescence." '''
 #pylint: enable=line-too-long
 #
 #
-#Constants used for Developer Purposes
-#-------------------------------------
-CHECKPOINT_ON = False
-DEVELOPER_USER = False
-STOP_SCROLLING_BETWEEN_INPUTS = True
-DEPENDENCIES = ['python36', 'win64']
-#
-#Constants used for Program Specifications and Resources
-#-------------------------------------------------------
-RESET_CODE_CREATE_NEW_MBSL = '9999'
-INPUT_WORD_LENGTH = 9
-#
-#Constants used for MultThreading and Embedded Development and Execution
-#-----------------------------------------------------------------------
-EMBEDDED_MBLS_MULTITHREAD_INTERVALS_SECONDS = 2
-EMBEDDED_MBLS_PAUSE_MULTITHREAD_INTERVALS_SECONDS = 0.02
-#
-#Managing & Storing Large Data Variables used in the Program
-#-----------------------------------------------------------
-#pylint: disable=invalid-name
-input_vector_history = ['debug note: not loaded yet', 'style note: global for convenience for now']
-#pylint: enable=invalid-name
-INPUT_VECTOR_HISTORY_FILE = 'input_vector_history.pk1'
-INIATION_VALUE = 'start'
-END_VALUE = 'end'
-#
-#Logging & Development Configuration
-#-----------------------------------
-#New Programmer note: LOG_FILE is a text file you can examine. It contains various checkpoints
-#and debug information posted each time the program runs.
-#LOG_FILE will become cumulatively larger. Please manually truncate or erase periodically.
-#Research note: Do not truncate or erase any results used for research purposes. Please archive.
-LOG_FILE = 'mbls_dump.log'
-logging.basicConfig(filename=LOG_FILE, level=logging.DEBUG)
-logging.info(time.strftime("%c"))
-#
-#Unit and Functional Testing Configuration
-#-----------------------------------------
-#In keeping with the philosophy above, we favor easy to use and to read testing frameworks (eg,
-#Pytest-like) versus more complex ones (eg, PyUnit/unittest-like).
-#-- >pip install pytest
-#-- 'test functions' with prefix 'test_' (eg, test_abcxxx) go into file PYTEST_UNIT_FILENAME
-#-- >pytest test_mblsxxxx.py    (or whatever filename in PYTEST_UNIT_FILENAME is)
-#Style Note: Ok to keep a commented copy of the test function (or a working copy to use via
-#in-program simulation of pytest)beside the actual function -- helps you create better tests.
-#New Programmer note: Be aware >pytest without a file will automatically find all sorts of files
-#with "_test" in name. Pay attention to what directory tree Pytest is operating on if this happens.
-#
-PYTEST_UNIT_FILENAME = "test_mbls301.py"
-PYTEST_FIXTURES = None
-PYTEST_FUNCTIONAL1 = None
-PYTEST_FUNCTIONAL2 = None
-PYTEST_DEPLOYMENT = None
-PYTEST_MANUALIZED = None
-#
-#
 #Overview
 #--------
 '''
@@ -405,13 +514,9 @@ learning (eg, the way a deep learning network recognizes a photograph) with symb
 learning (eg, if X=2 and Y=3 then X + Y should be 5). Scroll down to 'Main Program' section
 to see what the code is doing.
 
-   Use external 'pylint' for style, external 'pytest' (with a test_xxxx file) for unit testing,
-external 'mypy' for optional type checking, imported 'logging' for error and checkpoint logging (to
-xxxxx.log), imported 'threading' and 'schedule' for embedded real-time concurrent
-operation of the code, external 'pdb' (and/or other utilities) for debugging and code creation,
-and GitHub for version control -- all straightforward and open source resources. We program to
-tell a clear story and at the same time create an AGI.
+We program to tell a clear story and at the same time create an AGI.
 '''
+#pylint: enable=pointless-string-statement
 
 
 ####################
@@ -435,168 +540,236 @@ tell a clear story and at the same time create an AGI.
 #and more processed autonomic function section.
 #
 #
-def mbls_data(item_to_process: str, verbose: int = 0)-> None:
-    ''' Load, store and possibly modify "input_vector_history" mbls data variable
-            input_vector_history is a list holding vector info about MBLS HLN connections.
-            INPUT_VECTOR_HISTORY_FILE -- pickled file where store variable
-            INIATION_VALUE -- first prefix value add onto list (eg, 'start' or whatever value is)
-            END_VALUE -- last value add onto list (eg, 'end' or whatever value is)
-        Args:
-            verbose:
-                optional with default of 0
-                if non-zero value then function runs in verbose mode with prints of actions
-                also will prompt user to enter another value to store in variable saving
-            item_to_process:
-                'load' -- usually on initiation load pickled file of data into variable
-                  (if first time and file does not exist, then it will be automatically created)
-                'save' -- save all data before exiting, therefore system not reset when restart
-                'erase' -- delete the file, therefore new mbls when restart system
-        Style note: The 'with' statement will automatically close the file after
-                    each block of code.
-                    For development convenience input_vector_history kept as global for moment
-        Returns:
-        Raises:
-    '''
-    #pylint: disable=invalid-name
-    global input_vector_history
-    #pylint: enable=invalid-name
-    if verbose:
-        print('*start of mbls_data fcn: input_vector_history is: ', input_vector_history)
-
-    if item_to_process == 'load':
-        if not os.path.isfile(INPUT_VECTOR_HISTORY_FILE):
-            print("New MBLS detected -- will create file to store data.")
-            with open(INPUT_VECTOR_HISTORY_FILE, 'wb') as mbls_open_file1:
-                pickle.dump([INIATION_VALUE], mbls_open_file1)
-        with open(INPUT_VECTOR_HISTORY_FILE, 'rb') as mbls_open_file1:
-            print("Successfully opened MBLS's data structure from storage.")
-            input_vector_history = pickle.load(mbls_open_file1)
-            if verbose:
-                print('*leaving mbls_data "load": input_vector_history is: ', input_vector_history)
-
-    if item_to_process == 'save':
-        input_vector_history.append(END_VALUE)
-        print('verbose =', verbose)
-        if verbose:
-            input_vector_history.append(input('*enter another test value to append'))
-        with open(INPUT_VECTOR_HISTORY_FILE, 'wb') as mbls_open_file1:
-            pickle.dump(input_vector_history, mbls_open_file1)
-            print('All MBLS data saved to storage ({}) .'.format(INPUT_VECTOR_HISTORY_FILE))
-            if verbose:
-                print('*leaving mbls_data "save": input_vector_history is: ', input_vector_history)
-
-    if item_to_process == 'erase':
-        if os.path.isfile(INPUT_VECTOR_HISTORY_FILE):
-            os.remove(INPUT_VECTOR_HISTORY_FILE)
-            print('All MBLS data has been erased. When restart program will act as new MBLS.')
-        else:
-            print('Coding error: Cannot erase file that does not exist')
-        if verbose:
-            print('*leaving mbls_data "erase": input_vector_history is: ', input_vector_history)
-            print('*note that input_vector_history may or may not be erased at this point(depends')
-            print('*source code version/wishes) but if make new mbls it gets reset there')
+#pylint: disable=undefined-variable
+#justification: results from blocking pympler import
+def memory_var_usage()->bool:
+    '''Uses pympler third-party dependency to: "to measure, monitor and analyze
+    the memory behavior of Python objects in a running Python application."
+        Useful dev tool as MBLS data structure grows very large.
+    Args:
+        --
+    Style note:
+        -No associated unit test
+        -Usually pympler is only imported and used for occasional dev work
+    Returns:
+        True/ False depending on successful run
+    Raises:
+        try/except
+'''
+    try:
+        variable_memory = summary.summarize(muppy.get_objects())
+        print('\n'.join(summary.format_(variable_memory)))
+        return True
+    except:
+        print('Pympler not active. No memory map printed out.')
+        return False
+#pylint:enable=undefined-variable
 
 
-#pylint: disable=too-many-statements
-def test_mbls_data(verbose: int = 0)-> bool:
-    ''' Unit testing of above function (with a "test_" prefix added)
+def memory_var_usage_test()-> bool:
+    ''' Unit testing of above function (with a "_test" suffix added) (suffix allows ordering)
         -This function, with appropriate imported file prefixes to variables (since this program
         must be imported) is stored in the Pytest testing file specified by PYTEST_UNIT_FILENAME.
-        -It can also used for testing directly within this program via Pytest-like feature in
-        development mode of the MBLS code.
+        -It can also used for testing directly within this program.
         Args:
-            verbose:
-                optional with default of 0
-                passed to mbls_data function which causes:
-                    if non-zero value then function runs in verbose mode with prints of actions
-                    also will prompt user to enter another value to store in variable saving
-                within this function directly:
-                    verbose mode of some prints of actions
-                    prompts user to optionally check directory for files created
+            --
         Style note:
         -We stylistically allow keeping the unit test functions close to the actual functions, so
         both can be examined together, encouraging the developer to create the most useful tests.
-        -The 'non-verbose' mode of this unit test is still quite verbose, albeit just print's
-        which can be run in an automated fashion. We do this because so many places for system
-        to fail (and trigger assert error) -- in opening and writing to storage, in the global
-        variable scope changing inadvertently, etc -- easier for you to debug with the audit
-        trail being printed out.
-        -Warning: Do NOT execute as part of normal program -- actual function is being called and
-        will have side effects on program. Run in external file or if within in special dev mode.
+        Returns:
+            True if make it to end of test and no try/except error occurs
+        Raises:
+            --
+    '''
+    print('\n\n&START UNIT TEST: memory_var_usage()')
+    logging.info('\n&START UNIT TEST: memory_var_usage()')
+    if memory_var_usage():
+        logging.info('&END UNIT TEST: memory_var_usage(): success\n')
+        print('&END UNIT TEST: memory_var_usage(): success\n')
+        return True
+    print('MEMORY_CHECKING_ON is set as: ', MEMORY_CHECKING_ON)
+    logging.info('&END UNIT TEST: memory_var_usage(): FAILURE\n')
+    print('&END UNIT TEST: memory_var_usage(): FAILURE\n')
+    return False
+
+
+def in_vecs_erase(file_name: str = IN_VECS_FILE, verbose: int = 0)-> int:
+    ''' Erases file IN_VECS_FILE
+        -therefore when MBLS attempts next load operation a new MBLS will be created
+            in_vecs is a list holding vector info about MBLS HLN connections.
+            IN_VECS_FILE -- pickled file where store this variable
+        Args:
+            file_name: optional filename; default is IN_VECS_FILE specified above
+            verbose: if nonzero -  more verbose print and log messages
+        Style note: -For development convenience in_vecs kept as global for moment
+                    -Works well as is with typical local hard/SSD storage; consider more fault-
+                    tolerant coding in future for network storage and mod the bare exceptions
+        Returns:
+                0  unable to successfully run (expect 'success' even if file non-existent)
+                +1 if  runs to end of routine but does not actually erase file
+                +2 if  actually erased the file
+        Raises:
+                fault-tolerant operation: no
+                try-except raised if any issue in calling os.remove(<file>)
+    '''
+    try:
+        if os.path.isfile(file_name):
+            os.remove(file_name)
+            logging.info('in_vecs_erase: IN_VECS_FILE file erased')
+            print('IN_VECS_FILE (MBLS data) erased. When restart/reload will act as new MBLS.')
+            return_value = 2
+        else:
+            if verbose:
+                print('{} does not exist. Nothing to erase....'.format(file_name))
+            return_value = 1
+    except:
+        logging.info('in_vecs_erase: EXCEPTION in in_vecs_erase routine ')
+        print('in_vecs_erase: EXCEPTION in in_vecs_erase routine ')
+        return_value = 0
+    return return_value
+
+
+def in_vecs_load(file_name: str = IN_VECS_FILE, verbose: int = 0)-> int:
+    ''' Loads file IN_VECS_FILE into "in_vecs" data variable
+            in_vecs is a list holding vector info about MBLS HLN connections.
+            IN_VECS_FILE -- pickled file where store this variable
+        Args:
+            file_name: optional filename; default is IN_VECS_FILE specified above
+            verbose: if nonzero -  more verbose print and log messages
+        Style note: -The 'with' statement will automatically close the file after each code block
+                    -For development convenience in_vecs kept as global for moment
+                    -Works well as is with typical local hard/SSD storage; consider more fault-
+                    tolerant coding in future for network storage and mod the bare exceptions
+        Returns:
+                0  unable to successfully run
+                +1 if  runs to end of routine
+                IMPORTANT: Note that we clear global in_vecs (var, not file) and then attempt to
+                    load in storage contents into the cleared in_vecs
+                    if function fails, in_vecs still remains cleared
+        Raises:
+                fault-tolerant operation: no
+                try-except raised if any issues
+    '''
+    try:
+        if not os.path.isfile(file_name):
+            print("New MBLS detected -- will create IN_VECS_FILE file to store data.")
+            with open(file_name, 'wb') as f_l:
+                pickle.dump([], f_l)
+        in_vecs.clear()   #IMPORTANT: Note that we clear in_vecs here (var, not file)
+        with open(file_name, 'rb') as f_l:
+            contents = pickle.load(f_l)
+        for value in contents:
+            in_vecs.append(value)
+        if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
+            print('in_vecs loaded: ', in_vecs)
+        return_value = 1
+    except:
+        print('Failed to open or load info from file {}'.format(file_name))
+        logging.info('in_vecs_load: FAILED\n')
+        return_value = 0
+    return return_value
+
+
+def in_vecs_save(file_name: str = IN_VECS_FILE, verbose: int = 0)-> int:
+    ''' Save in_vecs variable into file IN_VECS_FILE
+            in_vecs is a list holding vector info about MBLS HLN connections.
+            IN_VECS_FILE -- pickled file where store this variable
+        Args:
+            file_name: optional filename; default is IN_VECS_FILE specified above
+            verbose: if nonzero -  more verbose print and log messages
+        Style note: -The 'with' statement will automatically close the file after each code block
+                    -For development convenience in_vecs kept as global for moment
+                    -Works well as is with typical local hard/SSD storage; consider more fault-
+                    tolerant coding in future for network storage and mod the bare exceptions
+        Returns:
+                0  unable to successfully run
+                +1 if  runs to end of routine
+        Raises:
+                fault-tolerant operation: no
+                try-except raised if any issues
+     '''
+    try:
+        with open(file_name, 'wb') as f_s:
+            pickle.dump(in_vecs, f_s)
+        if verbose:
+            pass
+        return_value = 1
+    except:
+        print('Failed to save into file {}'.format(file_name))
+        logging.info('in_vecs_load: FAILED\n')
+        return_value = 0
+    return return_value
+
+
+def in_vecs_load_test(file_name: str = IN_VECS_FILE_TEST, verbose: int = 0)-> bool:
+    ''' Unit testing of above function (with a "_test" suffix added) (suffix allows ordering)
+        NOTE: This unit test combines the in_vecs_load_test, in_vecs_save_test and
+        in_vecs_erase_test into this single in_vecs_load_test. The other unit tests are now
+        deprecated.
+        -This function, with appropriate imported file prefixes to variables (since this program
+        must be imported) is stored in the Pytest testing file specified by PYTEST_UNIT_FILENAME.
+        -It can also used for testing directly within this program.
+        Args:
+            file_name: optional filename; default is IN_VECS_FILE specified above
+            verbose: if nonzero -  more verbose print and log messages
+        Style note:
+        -We stylistically allow keeping the unit test functions close to the actual functions, so
+        both can be examined together, encouraging the developer to create the most useful tests.
+        -We allow in unit tests large functions created by their verbose mode if/print's.
+        -Warning: Actual function is being called and may have side effects on program.
+            (Safer to run in Pytest external file. However, attempt always made to restore values.)
+                  "&" precedes all printed lines ("&&" if verbose test function print out)
         Returns:
             True if make it to end of test and no assert error occurs
         Raises:
-            -Oct 18 -- ok to run internally -- we have made safe (will not overwrite real data)
+            AssertionError -- see below
     '''
-    print('\nSTART UNIT TEST: mbls_data()')
-    print('\nRunning unit test to verify correct operation of mbls_data() function')
-    print('---------------------------------------------------------------------\n')
-    if verbose:
-        print('Running in verbose mode which will require prompts from user.')
-        print('* from mbls_data verbosity, # from test function verbosity\n')
-    print('Changing global constants....restart code before use in non-testing mode\n')
-    #pylint: disable=invalid-name
-    global input_vector_history
-    #pylint: enable=invalid-name
-    global INPUT_VECTOR_HISTORY_FILE
-    restore_value = INPUT_VECTOR_HISTORY_FILE
-    INPUT_VECTOR_HISTORY_FILE = 'tester1.pkl'
+    #pylint: disable =invalid-name
+    #pylint: disable =global-statement
+    global in_vecs
+    #justification: need to restore in_vecs after unit test is complete
 
-    print('Check to see if erasing non-existant data (pkl) file causes problem.')
-    print('Expect to see "coding error message" - this is not error but source message - ignore')
-    mbls_data('erase', verbose)
-    mbls_data('erase', verbose)
+    print('\n&START UNIT TEST: in_vecs_load/save/erase()')
+    logging.info('\n&START UNIT TEST: in_vecs_load/save/erase()')
+    if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
+        if in_vecs == []:
+            in_vecs.append(SAMPLE_VALUE)
+        print('in_vecs before test starts: ', in_vecs)
+    restore_later_in_vecs = list(in_vecs)
+    in_vecs.clear()
 
-    print('Now should open new pickled file "tester1.pkl" and store init value in it')
-    print('Value of input_vector_history: ', input_vector_history)
-    mbls_data('load', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    if verbose:
-        input('#Chance for you to see which *.pkl files exist. Then click ENTER to continue.')
-    mbls_data('save', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    a_1 = input_vector_history
-    print('Just saved end value to file.... let us reload and what it shows...')
-    input_vector_history = ['erased values and this is a new value']
-    print('First we will change input_vector_history to :', input_vector_history)
-    print('Ok....now we will go ahead and load from file....')
-    mbls_data('load', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    b_1 = input_vector_history
-    assert a_1 == b_1
-    logging.info('passed first assert test : test_mbls_data')
-
-    mbls_data('save', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    mbls_data('load', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    if verbose:
-        input('#Chance for you to see which *.pkl files exist. Then click ENTER to continue.')
-    mbls_data('save', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    mbls_data('load', verbose)
-    c_1 = input_vector_history
-    print('Value of input_vector_history: ', input_vector_history)
-    input_vector_history = ['erased values and this is a new value']
-    print('Ok....let us change input_vector_history to :', input_vector_history)
-    print('Ok....now we will go ahead and load from file....')
-    mbls_data('load', verbose)
-    print('Value of input_vector_history: ', input_vector_history)
-    d_1 = input_vector_history
-    assert c_1 == d_1
-    logging.info('passed second assert test : test_mbls_data')
-
-    print('ok now let us go do cleanup')
-    mbls_data('erase', verbose)
-    INPUT_VECTOR_HISTORY_FILE = restore_value
-    print('Also, you really should restart before use for real MBLS work but in case you')
-    print('do not, INPUT_VECTOR_HISTORY_FILE restored to : ', INPUT_VECTOR_HISTORY_FILE)
-    print('nb. input_vector_history *variable* at this time is:', input_vector_history)
-    print('(if you do another "load" it will be replaced by contents from file)')
-    logging.info('UNIT TEST OVER : test_mbls_data')
-    print('UNIT TEST OVER : test_mbls_data\n')
-    return True
-#pylint: enable=too-many-statements
+    try:
+        in_vecs_erase(file_name, verbose)
+        in_vecs_load(file_name, verbose)
+        in_vecs.append(START_VALUE)
+        in_vecs.append(END_VALUE)
+        print('in_vecs with some entries now and save next: ', in_vecs)
+        in_vecs_save(file_name, verbose)
+        first_length = sys.getsizeof(in_vecs)
+        in_vecs.clear()
+        print('in_vecs after being cleared: ', in_vecs)
+        in_vecs_load(file_name, verbose)
+        print('in_vecs after being reloaded from file: ', in_vecs)
+        second_length = sys.getsizeof(in_vecs)
+        assert first_length == second_length
+        assert in_vecs[0] == START_VALUE
+        in_vecs = list(restore_later_in_vecs)
+        restore_later_in_vecs.clear()
+        if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
+            print('in_vecs after test over: ', in_vecs)
+        logging.info('&END UNIT TEST: in_vecs_load/save/erase(): success\n')
+        print('&END UNIT TEST: in_vecs_load(): success\n')
+        return True
+    except:
+        in_vecs = list(restore_later_in_vecs)
+        restore_later_in_vecs.clear()
+        if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
+            print('in_vecs after test over: ', in_vecs)
+        logging.info('&END UNIT TEST: in_vecs_load/save/erase(): FAILURE\n')
+        print('&END UNIT TEST: in_vecs_load/save/erase(): FAILURE\n')
+        return False
+    #pylint: enable =invalid-name
+    #pylint: enable =global-statement
 
 
 def sleep_selection(sleep_phase: int) -> int:
@@ -615,20 +788,20 @@ def sleep_selection(sleep_phase: int) -> int:
     9 -- runs all (or all of a set) existing internal unit tests and then exits
     Inspired by biology but goal is for MBLS to create a great AGI, not mimic the biological
         brain down to spiking neurons.
+    Style note: (for this function near top of program): Written so human mind can easily follow
+    assumptions and logic. While, for the sake of example, using a dictionary of functions to
+    emulate a switch/case structure, instead of the if/then's below would operate faster (ie,
+    jump to dict item rather than go through a sequence of if/then's, this is immaterial in this
+    section of the code. Except in critical areas of the code, we write for the reader,
+    not the computer
     Returns:
         0..9 :The sleep/wake/debug phase MBLS now switched to
         RESET_CODE_CREATE_NEW_MBSL: if hibernation == system exit(asked if want to save data)
         -1: An error occurred
     Raises:
         --
-    Style note: (for this function near top of program): Written so human mind can easily follow
-    assumptions and logic. While, for the sake of example, using a dictionary of functions to
-    emulate a switch/case structure, instead of the if/then's below would operate faster (ie,
-    jump to dict item rather than go through a sequence of if/then's, this is immaterial in this
-    section of the code. Except in critical areas of the code, we write for the reader,
-    not the computer.
     '''
-    logging.info(' '.join(['-in sleep_selection, sleep_phase = ', str(sleep_phase)]))
+    logging.info(' '.join(['sleep_selection(): sleep_phase = ', str(sleep_phase)]))
     all_allowed_sleep_values = [0, 1, 2, 3, 4, 5, 6, 7, 8]
     hibernation_value = 4
     avoid_hibernation_conversion_value = 3
@@ -636,7 +809,7 @@ def sleep_selection(sleep_phase: int) -> int:
 
     if sleep_phase == run_internal_tests_value:
         print('Triggered run of internal test. Verbose == 0 ')
-        unit_testing_functions_that_can_be_called_within_the_code(0)
+        unit_testing_functions_that_can_be_called_within_the_code()
         sleep_phase = hibernation_value
     if sleep_phase == hibernation_value:
         print('Awake/Sleep Phase switching to "Hibernation/reset"')
@@ -644,9 +817,9 @@ def sleep_selection(sleep_phase: int) -> int:
             print('Hibernation treated as a system exit code -- program will stop running.')
             if 'y' in input('Would you like to save data? (y/n): '):
                 logging.info('call to save data before system exit')
-                mbls_data('save')
+                in_vecs_save()
             else:
-                mbls_data('erase')
+                in_vecs_erase()
             print('Thank you....system exit underway....')
             logging.info('hibernation sleep phase parameter, return value will trigger sys exit')
             return_value = int(RESET_CODE_CREATE_NEW_MBSL)
@@ -663,7 +836,7 @@ def sleep_selection(sleep_phase: int) -> int:
     return return_value
 
 
-def test_sleep_selection(verbose: int = 0)-> bool:
+def test_sleep_selection()-> bool:
     ''' Unit testing of above function (with a "test_" prefix added)
         -This function, with appropriate imported file prefixes to variables (since this program
         must be imported) is stored in the Pytest testing file specified by PYTEST_UNIT_FILENAME.
@@ -686,26 +859,38 @@ def test_sleep_selection(verbose: int = 0)-> bool:
         Raises:
             -
     '''
-    print('START UNIT TEST : test_sleep_selection\n')
-    if verbose:
-        print('Running in verbose mode which will require prompts from user.')
-        print('# from test function verbosity\n')
-    for phase in [(-888, -1), (0, 0,), (1, 1), (2, 2), (3, 3), (4, 3),
-                  (5, 5), (6, 6), (7, 7), (8, 8), (55, -1)]:
-        if phase[0] == 4:
-            if verbose:
-                print("#Interactive input required: !!Do NOT opt to exit program!!")
-                assert sleep_selection(phase[0]) == phase[1]
-    logging.info('just completed unit tests for sleep_selection')
-    print('UNIT TEST OVER : test_sleep_selection\n')
-    return True
+    print('&START UNIT TEST : test_sleep_selection')
+    logging.info('&START UNIT TEST: sleep_selection()')
+    print("#Interactive input required: !!Do NOT opt to exit program!!")
+    try:
+        for phase in [(-888, -1), (0, 0,), (1, 1), (2, 2), (3, 3), (4, 3),
+                      (5, 5), (6, 6), (7, 7), (8, 8), (55, -1)]:
+            assert sleep_selection(phase[0]) == phase[1]
+        print('&UNIT TEST OVER : test_sleep_selection: success\n')
+        logging.info('&END UNIT TEST: sleep_selection(): success')
+        return True
+    except:
+        print('&UNIT TEST OVER : test_sleep_selection: FAILURE\n')
+        logging.info('&END UNIT TEST: sleep_selection(): FAILURE')
+        return False
 
 
 def set_sleep_phase(sleep_phase: int)-> int:
-    '''set the sleep phase
+    ''' Part of setting the sleep phase
+        Called by sleep_selection(sleep_phase)
+        Useful for future use in expanding functionality of each sleep phase
+        Args:
+            sleep_phase: what sleep phase MBLS has now been switched to
+            see parent function for meanings of the sleep phase
+        Style note:
+            --
+        Returns:
+            0..9 :The sleep/wake/debug phase MBLS switched to
+        Raises:
+            --
     '''
     if sleep_phase in [1, 2, 3, 4, 5]:
-        print('MBLS is asleep now in sleep phase ', sleep_phase, '.\n')
+        print('MBLS is asleep now in sleep phase ', sleep_phase, '.')
     elif sleep_phase == 9:
         print('Sleep code 9 will trigger internal testing now.')
     elif sleep_phase in [6, 7, 8]:

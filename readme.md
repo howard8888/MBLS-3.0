@@ -11,7 +11,7 @@ See below for key concepts that I wish to demonstrate in MBLS-3.
 
 ![image of child from slidedeck](https://github.com/howard8888/MBLS-3.0/blob/master/image_from_slidedeck_2.jpg)
 
-
+https://vimeo.com/297054113?ref=em-share
 
 ## How to Install & Dev Environment ##
 This is a Python-based project. Installation is intended to be very straightforward.

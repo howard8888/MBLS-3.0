@@ -11,7 +11,6 @@ See below for key concepts that I wish to demonstrate in MBLS-3.
 
 ![image of child from slidedeck](https://github.com/howard8888/MBLS-3.0/blob/master/image_from_slidedeck_2.jpg)
 
-https://vimeo.com/297054113?ref=em-share
 
 ## How to Install & Dev Environment ##
 This is a Python-based project. Installation is intended to be very straightforward.
@@ -36,6 +35,7 @@ Schneider, H., Non-Hybrid Meaningful-Based Learning System Using a Configurable 
 Schneider, H., Meaningful-Based Cognitive Architecture. Proceedings of the 2018 Annual International Conference on Biologically Inspired Architectures (BICA 2018) held on August 22, 2018 as part of the Joint Multi-Conference on Human-Level Artificial Intelligence (HLA-18).
 
 [https://www.respekt.cz/spolecnost/muze-pocitac-trpet-psychozou](https://www.respekt.cz/spolecnost/muze-pocitac-trpet-psychozou "<hyperlink to article>")
+https://vimeo.com/297054113?ref=em-share
 
 Schneider, H., Meaningful-Based Cognitive Architecture. Procedia Computer Science, 9th Annual International Conference on Biologically Inspired Cognitive Architectures, BICA 2018,edited by Samsonovich, A.V., in press.
 

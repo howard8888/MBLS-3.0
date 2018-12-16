@@ -45,6 +45,8 @@ https://github.com/howard8888/MBLS-3.0/blob/master/Schneider_MBLS.pdf
 
 **PowerPoint slides** (in PDF format) of my presentation at the BICA section of the HLAI-18 in Prague, Czech Republic can be downloaded from this GitHub page, and give an idea of the key concepts behind the Meaningful-Based Cognitive Architecture and the MBLS implementation.
 
+https://github.com/howard8888/MBLS-3.0/blob/master/HLAI18%20PowerPoint%20(in%20PDF)%20Presentation%20of%20MBLS.pdf
+
 **Excerpts of paper**:
 
 2018 Annual International Conference on Biologically Inspired Cognitive Architectures

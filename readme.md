@@ -41,6 +41,8 @@ https://vimeo.com/297054113?ref=em-share
 Schneider, H., Meaningful-Based Cognitive Architecture. Procedia Computer Science, 9th Annual International Conference on Biologically Inspired Cognitive Architectures, BICA 2018,edited by Samsonovich, A.V., Volume 145, 2018, Pages 471-480.
 https://www.sciencedirect.com/science/article/pii/S1877050918323974
 
+https://github.com/howard8888/MBLS-3.0/blob/master/Schneider_MBLS.pdf
+
 **PowerPoint slides** (in PDF format) of my presentation at the BICA section of the HLAI-18 in Prague, Czech Republic can be downloaded from this GitHub page, and give an idea of the key concepts behind the Meaningful-Based Cognitive Architecture and the MBLS implementation.
 
 **Excerpts of paper**:

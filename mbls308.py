@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 '''
 Main Module
-MBLS Simulation
+MBLS/ MBCA Simulation
 Meaningful Based Learning System implementation of the Meaningful-Based Cognitive Architecture
 Language: Python 3.6
 CPU, GPU, OS: Independent unless noted below
@@ -49,13 +49,16 @@ def pragma(ebbinghaus: int = 7)->bool:
 #      2a. Main Module Lower-Level Assist Functions
 #      2b. Imported Module
 #  3A. Higher-Level Assist Functions
-#  4.  High-Level MBLS Architecture Visible Functions
+#  4.  High-Level MBLS Architecture ('MBCA') Visible Functions
 #      3a. Main Module High-Level MBLS Architecture Visible Functions
 #      3b. Imported Module
 #  5.  Main Program Code
 #  6.  Embedded Software/Hardware Management
 #
-#
+#Note:  MBCA = 'Meaningful Based Cognitive Architecture'
+#       MBLS = 'Meaningful Based Learning System'
+#       While the MBLS is an implementation of the MBCA the two
+#       terms are used interchangeably below
 
 
 ####################

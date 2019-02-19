@@ -286,6 +286,12 @@ PYBOARD = True
 #MicroPython development for use with a PyBoard for which necessary libraries have been installed
 #Do not set this flag unless appropriate hardware and appropriate libraries exist.
 #
+PYTORCH_EMULATION = False
+#Will use PyTorch emulation of subsymbolic HLNs
+#PyTorch is a deep learning library which we have used as an intermediary step to simulate
+#the subsymbolic portions of the MBCA before a full simulation with custom built HLNs is
+#working and yielding usable results
+#
 MEMORY_CHECKING_ON = False
 #In testing module will analyze the memory behavior of the Python objects created
 #
@@ -341,6 +347,13 @@ import numpy as np
 #code quality ?? (L1 patchwork does not make sense), programmed in C, BSD license
 #"fundamental package needed for scientific computing with Python...."
 #
+import torch
+#Justification note: Awesome Python/LibHunt: 9.8 popularity, 10.0 activity >10,000 stars
+#Code Quality: L3, programmed in Python
+#PyTorch is a deep learning library which we have used as an intermediary step to simulate
+#the subsymbolic portions of the MBCA before a full simulation with custom built HLNs is
+#working and yielding usable results
+#
 import schedule
 #Justification note: Awesome Python/LibHunt: 8.8 popularity, 4.8 activity, >5000 stars
 #code quality L4 (lumnify scale), programmed in Python, MIT license
@@ -358,6 +371,7 @@ if MEMORY_CHECKING_ON:
 #Note: At present, normally not imported except for occasional development work.
 #
 #
+#
 #Import MBLS Code Modules
 #------------------------
 #Keeping all the MBLS code together here in this Main Module (ie, top-level script) would be
@@ -372,6 +386,12 @@ if MEMORY_CHECKING_ON:
 import mbls3_low_level_functions as mbll
 import mbls_some_version2_low_level_functions as mbv2
 #
+if PYTORCH_EMULATION:
+    import pytorch_hln_nn
+#HOP NOTE: From 'Flags used for Development Purposes' at start of code
+##PyTorch is a deep learning library which we have used as an intermediary step to simulate
+#the subsymbolic portions of the MBCA before a full simulation with custom built HLNs is
+#working and yielding usable results
 #pylint: enable=unused-import
 #
 #
@@ -948,28 +968,33 @@ def in_vecs_load_test(file_name: str = IN_VECS_FILE_TEST, verbose: int = 0)-> bo
     in_vecs.clear()
 
     try:
-        in_vecs_erase(file_name, verbose)
-        in_vecs_load(file_name, verbose)
-        in_vecs.append(START_VALUE)
-        in_vecs.append(END_VALUE)
-        print('in_vecs with some entries now and save next: ', in_vecs)
-        in_vecs_save(file_name, verbose)
-        first_length = sys.getsizeof(in_vecs)
-        in_vecs.clear()
-        print('in_vecs after being cleared: ', in_vecs)
-        in_vecs_load(file_name, verbose)
-        print('in_vecs after being reloaded from file: ', in_vecs)
-        second_length = sys.getsizeof(in_vecs)
-        assert first_length == second_length
-        assert in_vecs[0] == START_VALUE
-        in_vecs = list(restore_later_in_vecs)
-        restore_later_in_vecs.clear()
-        if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
-            print('in_vecs after test over: ', in_vecs)
-        logging.info('&END UNIT TEST: in_vecs_load/save/erase(): success\n')
-        print('&END UNIT TEST: in_vecs_load(): success\n')
-        return True
+        if PYTORCH_EMULATION:
+            pytorch_hln_nn.emulation_cycle()
+        else:
+            in_vecs_erase(file_name, verbose)
+            in_vecs_load(file_name, verbose)
+            in_vecs.append(START_VALUE)
+            in_vecs.append(END_VALUE)
+            print('in_vecs with some entries now and save next: ', in_vecs)
+            in_vecs_save(file_name, verbose)
+            first_length = sys.getsizeof(in_vecs)
+            in_vecs.clear()
+            print('in_vecs after being cleared: ', in_vecs)
+            in_vecs_load(file_name, verbose)
+            print('in_vecs after being reloaded from file: ', in_vecs)
+            second_length = sys.getsizeof(in_vecs)
+            assert first_length == second_length
+            assert in_vecs[0] == START_VALUE
+            in_vecs = list(restore_later_in_vecs)
+            restore_later_in_vecs.clear()
+            if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
+                print('in_vecs after test over: ', in_vecs)
+            logging.info('&END UNIT TEST: in_vecs_load/save/erase(): success\n')
+            print('&END UNIT TEST: in_vecs_load(): success\n')
+            return True
     except:
+        if PYTORCH_EMULATION:
+            return False
         in_vecs = list(restore_later_in_vecs)
         restore_later_in_vecs.clear()
         if verbose and sys.getsizeof(in_vecs) < TOO_MANY_BYTES_TO_DISPLAY:
@@ -977,6 +1002,7 @@ def in_vecs_load_test(file_name: str = IN_VECS_FILE_TEST, verbose: int = 0)-> bo
         logging.info('&END UNIT TEST: in_vecs_load/save/erase(): FAILURE\n')
         print('&END UNIT TEST: in_vecs_load/save/erase(): FAILURE\n')
         return False
+    return False
     #pylint: enable =invalid-name
     #pylint: enable =global-statement
 

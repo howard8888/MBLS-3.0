@@ -80,7 +80,7 @@ Sheppard Clinic North, Toronto, ON, Canada
 
 **version 3** - Summer 2018 -work pending - Code refactored into a more professional appearance to allow future team collaboration with the code. HLNs are being ramped up to 50,000 from a few dozen in previous versions, with the goal of obtaining quantitative experimental data to better validate key concepts behind the Meaningful-Based Cognitive Architecture. (GitHub repository is MBLS-3.0 )
 
-
+**intermediary version 3 note -- February 2019** -- PyTorch being used to simulate the subsymbolic HLNs in the what we are now calling the "MBCA" -- Meaningful-Based Cognitive Architecture.  PyTorch to be swapped out by actual simulation of HLNs.
 
 ## Key concepts to demonstrate in MBLS-3: ##
 

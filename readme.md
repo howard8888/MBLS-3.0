@@ -85,7 +85,7 @@ Sheppard Clinic North, Toronto, ON, Canada
 
 
 ## Version 4 -- Nano, Micro, Mini and full MBCA Versions -- Spring 2019 ##
-Due to greater levels of complexity, despite best efforts to follow best programming practices and the 'Human Oriented Programming' the project espouses, a new version of the project has been started. It is not sufficient to simply get the code working and participate in a simulation of finding a lost hiker in the forest, but the code must be understandable enough to demonstrate principles of the MBCA and to be continously modifiable in this regard.
+Due to greater levels of complexity, despite efforts to follow best programming practices and the 'Human Oriented Programming' the project espouses, a new version of the project has been started. It is not sufficient to simply get the code working and participate in a simulation of finding a lost hiker in the forest, but the code must be understandable enough to demonstrate principles of the MBCA and to be continuously modifiable in this regard.
 
 In Version 4 the project is split into a hierarchy of differing details. 
 

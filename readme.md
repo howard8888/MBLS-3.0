@@ -83,6 +83,22 @@ Sheppard Clinic North, Toronto, ON, Canada
 
 **intermediary version 3 note -- February 2019** -- PyTorch being used to simulate the subsymbolic HLNs in the what we are now calling the "MBCA" -- Meaningful-Based Cognitive Architecture.  PyTorch to be swapped out by actual simulation of HLNs.
 
+
+## Version 4 -- Nano, Micro, Mini and full MBCA Versions -- Spring 2019 ##
+Due to greater levels of complexity, despite best efforts to follow best programming practices and the 'Human Oriented Programming' the project espouses, a new version of the project has been started. It is not sufficient to simply get the code working and participate in a simulation of finding a lost hiker in the forest, but the code must be understandable enough to demonstrate principles of the MBCA and to be continously modifiable in this regard.
+
+In Version 4 the project is split into a hierarchy of differing details. 
+
+**version 4 -- Nano** - Spring 2019 - Implements fundamental principles of the MBCA with less than 1000 lines of code in a very transparent and understandable fashion. Short cuts are taken to accomplish this goal, eg, a Standard Library fuzzy pattern matching module is used rather than PyTorch in the higher levels of the project. All the principles of the MBCA can nonetheless be demonstrated in this version.
+
+**version 4 -- Micro** - Summer  2019 - Less than 10,000 lines of code. Off the shelf neural networks used for the subymbolic portions of the architecture, at present PyTorch is being used in Version 3.
+
+**version 4 -- Mini** - Fall  2019 - PyTorch swapped out for custom HLN subsymbolic library.
+
+**version 4 -- Full MBCA** - Start by end 2019 building upon Version 4 Mini MBCA code.
+
+
+
 ## Key concepts to demonstrate in MBLS-3: ##
 
 

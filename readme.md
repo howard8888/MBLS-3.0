@@ -1,4 +1,7 @@
-# MBLS-3.0
+# MBLS-3.0 Revised Granular Simulations
+Note: . Due to the complexity of a fine-grained simulation of the MBCA, simulations have been re-organized in 2019 as a nested spectrum of simulations ranging from  coarse-grained, demonstrating overall principles of the MBCA, to finer-grained, demonstrating more authentic MBCA components, simulations of the MBCA. Estimates for posting of working code wich can be copied and/or forked is given below. Also, as a temporary stopgap measure PyTorch1.0 is now being used for sub-symbolic simulations, although there are issues with it modeling the behavior of a network composed of HLN (Hopfield-like Network) rather than neurons as the basic unit.
+
+
 # Version 3.0 Meaningful Based Learning System (MBLS) #
 # Meaningful Based Cognitive Architecture (MBCA) #
 
@@ -84,18 +87,19 @@ Sheppard Clinic North, Toronto, ON, Canada
 **intermediary version 3 note -- February 2019** -- PyTorch being used to simulate the subsymbolic HLNs in the what we are now calling the "MBCA" -- Meaningful-Based Cognitive Architecture.  PyTorch to be swapped out by actual simulation of HLNs.
 
 
-## Version 4 -- Nano, Micro, Mini and full MBCA Versions -- Spring 2019 ##
-Due to greater levels of complexity, despite efforts to follow best programming practices and the 'Human Oriented Programming' the project espouses, a new version of the project has been started. It is not sufficient to simply get the code working and participate in a simulation of finding a lost hiker in the forest, but the code must be understandable enough to demonstrate principles of the MBCA and to be continuously modifiable in this regard.
+## Version 3 Revised Granular Simulations -- Nano, Micro, Mini and full MBCA Versions -- Spring 2019 ##
+Due to greater levels of complexity, despite efforts to follow best programming practices and the 'Human Oriented Programming' the project espouses, a new revision of the project has been started. It is not sufficient to simply get the code working and participate in a simulation of finding a lost hiker in the forest, but the code must be understandable enough to demonstrate principles of the MBCA and to be continuously modifiable in this regard.
 
 In Version 4 the project is split into a hierarchy of differing details. 
 
-**version 4 -- Nano** - Spring 2019 - Implements fundamental principles of the MBCA with less than 1000 lines of code in a very transparent and understandable fashion. Short cuts are taken to accomplish this goal, eg, a Standard Library fuzzy pattern matching module is used rather than PyTorch in the higher levels of the project. All the principles of the MBCA can nonetheless be demonstrated in this version.
+**version 4 -- Nano** - Smallest 'nano' size, Largest granularity of simulation - Implements fundamental principles of the MBCA with less than 1000 lines of code in a very transparent and understandable fashion. Short cuts are taken to accomplish this goal, eg, a Standard Library fuzzy pattern matching module is used rather than PyTorch in the higher levels of the project. All the principles of the MBCA can nonetheless be demonstrated in this version.  EST DATE AVAILABLE TO RUN, COPY & FORK:  June 1, 2019
 
-**version 4 -- Micro** - Summer  2019 - Less than 10,000 lines of code. Off the shelf neural networks used for the subymbolic portions of the architecture, at present PyTorch is being used in Version 3.
+**version 4 -- Micro** - Modest 'micro' size, Better granularity of simulation than the Nano simulation - Less than 10,000 lines of code. Off the shelf neural networks used for the subymbolic portions of the architecture, at present PyTorch is being used in Version 3.
+EST DATE AVAILABLE TO RUN, COPY & FORK:  August-November 1, 2019, depending on release of pre-final versions
 
-**version 4 -- Mini** - Fall  2019 - PyTorch swapped out for custom HLN subsymbolic library.
+**version 4 -- Mini** - Substantial 'mini' size, Good granularity of simulation - PyTorch possibly swapped out for custom HLN subsymbolic library at this level of simulation. EST DATE AVAILABLE TO RUN, COPY & FORK:  Jan 1, 2020
 
-**version 4 -- Full MBCA** - Start by end 2019 building upon Version 4 Mini MBCA code.
+**version 4 -- Full MBCA** - Large code base, team programming required, Fine granularity of simulation. EST DATE AVAILABLE TO RUN, COPY & FORK: TBD
 
 
 

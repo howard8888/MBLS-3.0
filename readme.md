@@ -90,7 +90,7 @@ Sheppard Clinic North, Toronto, ON, Canada
 ## Version 3 Revised Granular Simulations -- Nano, Micro, Mini and full MBCA Versions -- Spring 2019 ##
 Due to greater levels of complexity, despite efforts to follow best programming practices and the 'Human Oriented Programming' the project espouses, a new revision of the project has been started. It is not sufficient to simply get the code working and participate in a simulation of finding a lost hiker in the forest, but the code must be understandable enough to demonstrate principles of the MBCA and to be continuously modifiable in this regard.
 
-In Version 4 the project is split into a hierarchy of differing details. 
+In Version 3Revised of the project is split into a nested hierarchy of differing details. 
 
 **version 3Revised -- Nano** - Smallest 'nano' size, Largest granularity of simulation - Implements fundamental principles of the MBCA with less than 1000 lines of code in a very transparent and understandable fashion. Short cuts are taken to accomplish this goal, eg, a Standard Library fuzzy pattern matching module is used rather than PyTorch in the higher levels of the project. All the principles of the MBCA can nonetheless be demonstrated in this version.  EST DATE AVAILABLE TO RUN, COPY & FORK:  June 1, 2019
 

@@ -92,14 +92,14 @@ Due to greater levels of complexity, despite efforts to follow best programming 
 
 In Version 4 the project is split into a hierarchy of differing details. 
 
-**version 4 -- Nano** - Smallest 'nano' size, Largest granularity of simulation - Implements fundamental principles of the MBCA with less than 1000 lines of code in a very transparent and understandable fashion. Short cuts are taken to accomplish this goal, eg, a Standard Library fuzzy pattern matching module is used rather than PyTorch in the higher levels of the project. All the principles of the MBCA can nonetheless be demonstrated in this version.  EST DATE AVAILABLE TO RUN, COPY & FORK:  June 1, 2019
+**version 3Revised -- Nano** - Smallest 'nano' size, Largest granularity of simulation - Implements fundamental principles of the MBCA with less than 1000 lines of code in a very transparent and understandable fashion. Short cuts are taken to accomplish this goal, eg, a Standard Library fuzzy pattern matching module is used rather than PyTorch in the higher levels of the project. All the principles of the MBCA can nonetheless be demonstrated in this version.  EST DATE AVAILABLE TO RUN, COPY & FORK:  June 1, 2019
 
-**version 4 -- Micro** - Modest 'micro' size, Better granularity of simulation than the Nano simulation - Less than 10,000 lines of code. Off the shelf neural networks used for the subymbolic portions of the architecture, at present PyTorch is being used in Version 3.
+**version 3Revised -- Micro** - Modest 'micro' size, Better granularity of simulation than the Nano simulation - Less than 10,000 lines of code. Off the shelf neural networks used for the subymbolic portions of the architecture, at present PyTorch is being used in Version 3.
 EST DATE AVAILABLE TO RUN, COPY & FORK:  August-November 1, 2019, depending on release of pre-final versions
 
-**version 4 -- Mini** - Substantial 'mini' size, Good granularity of simulation - PyTorch possibly swapped out for custom HLN subsymbolic library at this level of simulation. EST DATE AVAILABLE TO RUN, COPY & FORK:  Jan 1, 2020
+**version 3Revised -- Mini** - Substantial 'mini' size, Good granularity of simulation - PyTorch possibly swapped out for custom HLN subsymbolic library at this level of simulation. EST DATE AVAILABLE TO RUN, COPY & FORK:  Jan 1, 2020
 
-**version 4 -- Full MBCA** - Large code base, team programming required, Fine granularity of simulation. EST DATE AVAILABLE TO RUN, COPY & FORK: TBD
+**version 3Revised -- Full MBCA** - Large code base, team programming required, Fine granularity of simulation. EST DATE AVAILABLE TO RUN, COPY & FORK: TBD
 
 
 

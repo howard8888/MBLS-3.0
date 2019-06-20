@@ -35,11 +35,12 @@ Simulation to focus on subsymbolic vs symbolic data streams
 Python 3.6; Compatible with GPU CUDA usage for PyTorch
 Verified for use with Google Colab Jupyter Notebook GPUs
 
-Nano    -- insect level brain simulation
+Nano    -- insect\lamprey -> fish -> reptile -> 
+               mammal -> human -> superintelligence level brain simulation
         -- autonomic modules
         -- input shaping modules
         -- sub-HLNs sensory input (fuzzy simulation)
-        -- sub-HLNs causal memory
+        -- sub-HLNs causal memory with varying hippocampal units
         -- core goal module (includes sleep/wake, lifespan submodules)
         -- reward module
         -- sub-HLNs motor output

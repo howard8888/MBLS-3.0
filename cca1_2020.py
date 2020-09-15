@@ -3,19 +3,12 @@
 #ok with colab
 '''
 Causal Cognitive Architecture 1 (CCA1)
-2020 rewrite with architectural changes, clean up of old deprecated versions
+July 2020 full rewrite 
 
 main() routine of CCA1 simulation
 Contributor(s): Howard Schneider
-See GitHub page for licensing, wiki, other details
-
-
-if __name__ == '__main__': main_eval():  while loop:
-    main_mech.cycles(True)  #if nano siml'n chosen
-    print_conscious_memory(sim_choice)
-    if not run_again(): break loop and end
-    -->else loops again for new mission --^
-
+See GitHub page for wiki and other details
+#
 #Deprecation Transition Note
 #April 2019 Version 3 of MBLS/MBCA is being transitioned to
 #"nano"/"micro"/"milli"/"full" MBCA coarse/fine grain simulations
@@ -25,8 +18,43 @@ if __name__ == '__main__': main_eval():  while loop:
 #--> April 17/19 origin of scaffolding code -- rebuild G12 versions from
 # H12 version from this scaffolding
 #November 2019 G12/H12 versions MBLS/MBCA being transitioned to a new
-#architecture -- CCA1 -- Causal Cognitive Architecture1
+#architecture -- Causal Cognitive Architecture 1
 #
+#
+#July 2020 Complete re-write into more modular and expandable code
+#Start with hard-coded blocks of the CCA1 architecture and expand over
+#time into dynamically functioning code blocks
+#livewired development -- keep the code always working
+#
+
+overview:
+
+if __name__ == '__main__': main_eval():  while loop:
+    main_mech.cycles(True)  #if nano siml'n chosen
+    print_conscious_memory(sim_choice)
+    if not run_again(): break loop and end
+    -->else loops again for new mission --^
+
+main data structure:
+
+ddata.Mapdata.int_map
+-deprecated 6x6 rank 3 tensor
+-at time of writing 6x6 matrix with links to an unlimited number
+    of other 6x6 rank 2 tensors  (limited by memory size)
+-after sensory data is processed, everything becomes a map in the CCA1
+-maps are used for physical navigation as well as processing of ideas
+
+note on causality:
+
+-while transitivity can allow pre-causal behavior, the CCA1 rejects it as sufficient
+    for full causality, and achieves the latter by processing instinctive and learned
+    primitives (ie, rule-like) against stored maps
+    (transitivity -- eg, if a=b and b=c then a=c )
+
+note on architecture:
+See GitHub page for unpublished and published papers, and other details
+
+
 '''
 
 ## START IMPORTS   START IMPORTS
@@ -319,14 +347,15 @@ def main_eval()-> None:
             print('\nnb. at this point in deprecation/rewrite full simulations--> nanoG\n')
 
         elif sim_choice == "nanoG":
-            try:
-                main_mech.cycles(g, True)  #  type: ignore
-                print_conscious_memory(g, sim_choice)
-                if not run_again():
-                    break
-            except:
-                print('debug: main_mech.py module not found by main_eval()')
+            #try:
+            if not main_mech.cycles(g, True):  #  type: ignore
+                print('\nDebug note: returned unsuccessfully from main_mech()\n')
+            print_conscious_memory(g, sim_choice)
+            if not run_again():
                 break
+            #except:
+            #   print('debug: main_mech.py module not found by main_eval()')
+            #   break
 
         elif sim_choice == "micro":
             try:
